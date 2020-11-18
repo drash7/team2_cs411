@@ -20,57 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../docs/AS3 Technologies To Use.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/prototype-from-scratch.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/.idea/backAPI.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/.idea/runConfigurations/bin_www.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/bin/www" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/config/fetchConfigs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/public/stylesheets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/routes/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/routes/users.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/views/error.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/views/index.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backAPI/views/layout.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../client/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../client/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/eh.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/registerServiceWorker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sc1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sc2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -82,10 +50,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.8.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.14.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -98,6 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605673989409</updated>
       <workItem from="1605673990736" duration="54000" />
+      <workItem from="1605674308791" duration="3398000" />
     </task>
     <servers />
   </component>
@@ -114,5 +85,28 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1110" height="228" key="GridCell.Tab.0.bottom" timestamp="1605677709872">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1110" height="228" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1605677709872" />
+    <state width="1110" height="228" key="GridCell.Tab.0.center" timestamp="1605677709871">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1110" height="228" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1605677709871" />
+    <state width="1110" height="228" key="GridCell.Tab.0.left" timestamp="1605677709871">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1110" height="228" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1605677709871" />
+    <state width="1110" height="228" key="GridCell.Tab.0.right" timestamp="1605677709871">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1110" height="228" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1605677709871" />
+    <state x="801" y="141" width="670" height="676" key="search.everywhere.popup" timestamp="1605676592084">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state x="801" y="141" width="670" height="676" key="search.everywhere.popup/0.25.1440.792@0.25.1440.792" timestamp="1605676592084" />
   </component>
 </project>

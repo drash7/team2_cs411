@@ -40,4 +40,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//ref: https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js
+
 module.exports = app;
