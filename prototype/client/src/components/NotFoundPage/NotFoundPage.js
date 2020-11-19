@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header1 from './Header';
+import Header from './Header';
 const NotFoundPage = () => {
   return (
     <React.Fragment>
