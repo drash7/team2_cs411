@@ -1,4 +1,5 @@
-/config
+#git ignore config
+config/
 
 
 # Logs
