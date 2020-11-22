@@ -42,7 +42,7 @@ router.route('/callback')
   //go to the main page on FRONT-end
   request.post(authOptions, (error, response, body) => {
     const access_token = body.access_token
-    const uri = 'http://localhost:3000'
+    const uri = 'http://localhost:9000/artist'
     res.redirect(uri + '?access_token=' + access_token)
   })
 })

@@ -16,3 +16,18 @@ const asyncExpire = promisify(client.expire).bind(client);
 client.on("error", function (error) {
     console.error(error);
 });
+
+router.route('/')
+    .get((req, res) => {
+    let test_response = {
+        display: true,
+        value: "0"
+    }
+    res.send(test_response);
+
+})
+
+
+
+
+module.exports = router;
