@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="" />
+    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,6 +68,10 @@
       <updated>1605673989409</updated>
       <workItem from="1605673990736" duration="54000" />
       <workItem from="1605674308791" duration="3433000" />
+      <workItem from="1606053107405" duration="38000" />
+      <workItem from="1606053179913" duration="80000" />
+      <workItem from="1606053276083" duration="23000" />
+      <workItem from="1606053352211" duration="158000" />
     </task>
     <servers />
   </component>
@@ -80,22 +91,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1110" height="228" key="GridCell.Tab.0.bottom" timestamp="1605677810069">
+    <state x="292" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606053359725">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1605677810069" />
-    <state width="1110" height="228" key="GridCell.Tab.0.center" timestamp="1605677810068">
+    <state x="292" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.792@0.25.1440.792" timestamp="1606053359725" />
+    <state width="1204" height="228" key="GridCell.Tab.0.bottom" timestamp="1606053499018">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1605677810068" />
-    <state width="1110" height="228" key="GridCell.Tab.0.left" timestamp="1605677810068">
+    <state width="1204" height="228" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1606053499018" />
+    <state width="1204" height="228" key="GridCell.Tab.0.center" timestamp="1606053499017">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1605677810068" />
-    <state width="1110" height="228" key="GridCell.Tab.0.right" timestamp="1605677810069">
+    <state width="1204" height="228" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1606053499017" />
+    <state width="1204" height="228" key="GridCell.Tab.0.left" timestamp="1606053499016">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1605677810069" />
+    <state width="1204" height="228" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1606053499016" />
+    <state width="1204" height="228" key="GridCell.Tab.0.right" timestamp="1606053499017">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1204" height="228" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1606053499017" />
     <state x="801" y="141" width="670" height="676" key="search.everywhere.popup" timestamp="1605676592084">
       <screen x="0" y="25" width="1440" height="792" />
     </state>

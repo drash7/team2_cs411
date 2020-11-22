@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d6a7fdd-6f07-40b0-8856-f2286c991ae3" name="Default Changelist" comment="" />
+    <list default="true" id="8d6a7fdd-6f07-40b0-8856-f2286c991ae3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,13 +48,23 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/config" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/bin/www" working-dir="$PROJECT_DIR$/server/bin">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.www" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,7 +76,8 @@
       <updated>1605673950404</updated>
       <workItem from="1605673952529" duration="1000" />
       <workItem from="1605674058862" duration="231000" />
-      <workItem from="1606052162935" duration="584000" />
+      <workItem from="1606052162935" duration="797000" />
+      <workItem from="1606053310494" duration="28000" />
     </task>
     <servers />
   </component>
@@ -80,5 +95,23 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1374" height="200" key="GridCell.Tab.0.bottom" timestamp="1606053338112">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1374" height="200" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1606053338112" />
+    <state width="1374" height="200" key="GridCell.Tab.0.center" timestamp="1606053338111">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1374" height="200" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1606053338111" />
+    <state width="1374" height="200" key="GridCell.Tab.0.left" timestamp="1606053338111">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1374" height="200" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1606053338111" />
+    <state width="1374" height="200" key="GridCell.Tab.0.right" timestamp="1606053338112">
+      <screen x="0" y="25" width="1440" height="792" />
+    </state>
+    <state width="1374" height="200" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1606053338112" />
   </component>
 </project>
