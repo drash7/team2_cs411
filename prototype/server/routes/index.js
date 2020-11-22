@@ -4,9 +4,10 @@ const querystring = require('querystring');
 const request = require('request')
 const CONFIG = require('../config/fetchConfigs');
 
+
 const client_id = CONFIG.fetchOptions.client_id;
 const client_secret = CONFIG.fetchOptions.client_secret;
-const redirect_uri = CONFIG.fetchOptions.redirect_uri;
+const redirect_uri = CONFIG.fetchOptions.url;
 
 
 // OAuth for Spotify API
