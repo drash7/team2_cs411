@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const querystring = require('querystring');
 const request = require('request')
+const CONFIG = require('../config/fetchConfigs');
 
-const client_id = 'ff2fa4499ed0455ba2b78579db1b13de';
-const client_secret = 'f1a7b8253fb2493c8089e86287b06453';
-const redirect_uri = 'http://localhost:9000/callback';
+
+const client_id = CONFIG.fetchOptions.client_id;
+const client_secret = CONFIG.fetchOptions.client_secret;
+const redirect_uri = CONFIG.fetchOptions.redirect_uri;
 
 
 // OAuth for Spotify API

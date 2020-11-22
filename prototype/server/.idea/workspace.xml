@@ -19,15 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.pug" afterDir="false" />
-    </list>
+    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605673989409</updated>
       <workItem from="1605673990736" duration="54000" />
-      <workItem from="1605674308791" duration="3398000" />
+      <workItem from="1605674308791" duration="3433000" />
     </task>
     <servers />
   </component>
@@ -88,22 +80,22 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1110" height="228" key="GridCell.Tab.0.bottom" timestamp="1605677709872">
+    <state width="1110" height="228" key="GridCell.Tab.0.bottom" timestamp="1605677810069">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1605677709872" />
-    <state width="1110" height="228" key="GridCell.Tab.0.center" timestamp="1605677709871">
+    <state width="1110" height="228" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1605677810069" />
+    <state width="1110" height="228" key="GridCell.Tab.0.center" timestamp="1605677810068">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1605677709871" />
-    <state width="1110" height="228" key="GridCell.Tab.0.left" timestamp="1605677709871">
+    <state width="1110" height="228" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1605677810068" />
+    <state width="1110" height="228" key="GridCell.Tab.0.left" timestamp="1605677810068">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1605677709871" />
-    <state width="1110" height="228" key="GridCell.Tab.0.right" timestamp="1605677709871">
+    <state width="1110" height="228" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1605677810068" />
+    <state width="1110" height="228" key="GridCell.Tab.0.right" timestamp="1605677810069">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1110" height="228" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1605677709871" />
+    <state width="1110" height="228" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1605677810069" />
     <state x="801" y="141" width="670" height="676" key="search.everywhere.popup" timestamp="1605676592084">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
