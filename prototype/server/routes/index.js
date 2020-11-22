@@ -11,6 +11,9 @@ const redirect_uri = CONFIG.fetchOptions.url;
 
 
 // OAuth for Spotify API
+
+
+// triggered from front end - log in with spotify
 router.route('/login')
     .get((req, res) => {
         res.redirect('https://accounts.spotify.com/authorize?' +
@@ -21,38 +24,28 @@ router.route('/login')
                 redirect_uri }))
 })
 
-//redirect user to login page
+
+//redirect user to spotify login page
 router.route('/callback')
-    .get((req, res) => {
-        const code = req.query.code || null
+    .get((req, res, next) => {
         const authOptions = {
             url: 'https://accounts.spotify.com/api/token',
-            form: {
-              code: code,
-              redirect_uri,
-              grant_type: 'authorization_code'
-            },
             headers: {
-              'Authorization': 'Basic ' + Buffer.from(
-                  (client_id + ':' + client_secret).toString('base64')
-              )},
+                'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64')},
+            form: {
+                grant_type: 'client_credentials'},
             json: true
-          }
+        };
 
 
-  //go to the main page on FRONT-end
-  request.post(authOptions, (error, response, body) => {
-    const access_token = body.access_token;
-    const uri = 'http://localhost:9000/artist'
-    res.redirect(uri + '?access_token=' + access_token)
-  })
-})
-
-
-// GET home page
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
+        // authorization code received, exchange it with an access token
+        request.post(authOptions, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                let token = body.access_token;
+                res.redirect('http://localhost:9000/artist' + '?access_token=' + token);
+            }
+        });
+    });
 
 
 module.exports = router;

@@ -1,9 +1,11 @@
 //project imports
 const express = require('express');
 const router = express.Router();
+const request = require('request')
 const fetch = require('node-fetch');
-const request = require('request'); // "Request" library
 const CONFIG = require('../config/fetchConfigs');
+
+
 
 // redis imports
 const redis = require('redis');
@@ -20,52 +22,32 @@ const asyncExists = promisify(client.exists).bind(client);
 const asyncExpire = promisify(client.expire).bind(client);
 
 
-// your application requests authorization
-const authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    headers: {
-        'Authorization': 'Basic ' + Buffer.from(
-            client_id + ':' + client_secret).toString('base64')},
-    form: {
-        grant_type: 'client_credentials'},
-    json: true
-};
-
-
 client.on("error", function (error) {
     console.error(error);
 });
 
-request.post(authOptions, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-        // use the access token to access the Spotify Web API
-        const token = body.access_token;
+
+router.route('/')
+    .get(async (req, res, next) => {
+        let accessToken = req.query.access_token
         const options = {
-            url: 'https://api.spotify.com/v1/artists/0OdUWJ0sBjDrqHygGUXeCF',
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            json: true
+            method: 'GET',
+            headers: {  Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}` }
         };
-        request.get(options, function(error, response, body) {
-            console.log(body);
-        });
-    }
-});
 
-//
-// router.route('/')
-//     .get((req, res) => {
-//     let test_response = {
-//         display: true,
-//         value: "0"
-//     }
-//     res.send(test_response);
-//
-// })
+        const url = 'https://api.spotify.com/v1/users/jmperezperez';
+        const rawData = await fetch(url, {options});
+        const jsData = await rawData.json();
+        console.log(jsData);
 
+        // request.get(options, function (error, response, body) {
+        //     //console.log(body);
+        //     res.send(body);
+        // });
 
-
+    })
 
 
 module.exports = router;
