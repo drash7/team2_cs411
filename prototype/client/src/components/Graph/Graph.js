@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { select } from 'd3-selection';
+import colors from "./Colors";
 
 
 class Graph extends Component {
@@ -60,22 +61,21 @@ class Graph extends Component {
                 .on("end", dragended);
         }
 
-        // Determines which color should be assigned to a node based off of genre
-        // TODO: Generalize such that this doesn't depend on hard-coded dummy data genres
-        function node_color(d) {
-            return link_colors[d.__proto__.genres[0]];
-        }
-
-        // Right now, the color for links is static, no matter what
-        function link_color(d) {
-            return "#171717";
-        }
-
         // Passed in graph
         const graph = this.props.graph
 
         const links = graph.links.map(d => Object.create(d));
         const nodes = graph.nodes.map(d => Object.create(d));
+
+        // Node Coloring
+        const node_color = d3.scaleOrdinal()
+            .domain(graph.nodes.map(n => n.genres[0]))
+            .range(colors.genreColors);
+
+        // Right now, the color for links is static, no matter what
+        function link_color(d) {
+            return "#171717";
+        }
 
         // Force simulation treats nodes as "particles" with repelling and attracting forces
         const simulation = d3.forceSimulation(nodes)
@@ -83,12 +83,15 @@ class Graph extends Component {
             .force("charge", d3.forceManyBody(links).strength(-200))
             .force("link", d3.forceLink(links).id(d => d.id).strength(0.0001))
             .force("x", d3.forceX().x(d => {
-                const xCenter = {
-                    both: 0,
-                    Elisson: 500,
-                    Rafael: -500
+
+                switch (d.__proto__.source) {
+                    case this.props.users.user1:
+                        return -500;
+                    case this.props.users.user2:
+                        return 500;
+                    default:
+                        return 0;
                 }
-                return xCenter[d.__proto__.source]
             }))
             .force("y", d3.forceY());
 
@@ -113,7 +116,7 @@ class Graph extends Component {
             .attr("class", "node")
             .append("circle")
             .attr("r", 10)
-            .attr("fill", d => node_color(d))
+            .attr("fill", d => node_color(d.__proto__.genres[0]))
             .call(drag(simulation))
 
         // Append labels to nodes
