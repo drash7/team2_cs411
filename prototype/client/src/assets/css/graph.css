@@ -1,0 +1,14 @@
+text.label {
+  color: black;
+  font-family: sans-serif;
+  font-size: .8em;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+}
+
+.node:hover text.label {
+  opacity: 1;
+  visibility: visible;
+  opacity: 1;
+}

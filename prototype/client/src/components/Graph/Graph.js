@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { select } from 'd3-selection';
 import colors from "./Colors";
+import './../../assets/css/graph.css';
 
 
 class Graph extends Component {
@@ -120,8 +121,8 @@ class Graph extends Component {
             .call(drag(simulation))
 
         // Append labels to nodes
-        // Label appears based on node hover behavior thanks to CSS (look at App.css)
-        var labels = select(NODE)
+        // Label appears based on node hover behavior
+        const labels = select(NODE)
             .selectAll("g")
             .append("text")
             .attr("class", "label")
