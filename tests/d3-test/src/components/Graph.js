@@ -85,8 +85,8 @@ class Graph extends Component {
             .force("x", d3.forceX().x(d => {
                 const xCenter = {
                     both: 0,
-                    elisson: 500,
-                    rafael: -500
+                    Elisson: 500,
+                    Rafael: -500
                 }
                 return xCenter[d.__proto__.source]
             }))
