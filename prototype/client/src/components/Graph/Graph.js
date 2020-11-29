@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import { select } from 'd3-selection';
 import colors from "./Colors";
 import './../../assets/css/graph.css';
+import { max } from 'd3';
 
 
 class Graph extends Component {
@@ -112,36 +113,97 @@ class Graph extends Component {
             .attr("fill", d => node_color(d.__proto__.genres[0]))
             .call(drag(simulation))
             .style("cursor", "pointer")
-
+        
+            select(NODE).selectAll("circle")
+                .on('mouseover', function (d, i) {
+                    select(this).transition()
+                        .duration('50')
+                        .attr("r", 20)
+                })
+                .on('mouseout', function (d, i) {
+                    select(this).transition()
+                        .duration('50')
+                        .attr("r", 10)
+                });
+            
+        
         // Append labels to nodes
         // Label appears based on node hover behavior
-        const nameLabels = select(NODE)
-            .selectAll("g")
-            .append("text")
+        const nameLabels = select(NODE).selectAll("g").append("g")
+
+        nameLabels
             .attr("class", "label")
-            .attr("dx", 12)
-            .attr("dy", ".35em")
-            .text(function (d) { return d.id });
+        
+        // RECTANGLE
+        nameLabels
+            .append("rect")
+            .attr("width", d => {
+                let n = d.id.length;
+                let g = d.genres.slice(0, 3).toString().length;
+                let s = d.source.length;
+                let max = Math.max(n, g, s);
+                let result = 90
+                if (max == g || max == s){
+                    result += (8+Math.max(n, g, s))*10
+                } else {
+                    result += (8+Math.max(n, g, s))*11
+                }
+                return result
+            })
+            .attr("height", 90)
+            .attr("fill", "white")
+            // .attr("stroke-width", 0.5)
+            // .attr("stroke", "#CCCCCC")
+            .attr("rx", 10)
+            .style("text-shadow", "1em");
+        
+        // IMAGE
+        nameLabels
+            .append("image")
+            // .attr("class", "label")
+            .attr('width', 70)
+            .attr('height', 70)
+            .attr("x", 10)
+            .attr("y", 10)
+            .attr('xlink:href', function (d) { 
+                console.log(d.photo);
+                return d.photo;
+            })
 
-        const artistLabel = select(NODE).selectAll("g").append("g")
+        // NAME
+        nameLabels
+            .append("text")
+            .style("font-size", 18)
+            .attr("x", 90)
+            .attr("y", 25)
+            // .attr("letter-spacing", "0.0625em")
+            .text(function (d) { return d.id })
+        
+        // SOURCE
+        nameLabels
+            .append("text")
+            .style("font-size", 14)
+            .attr("x", 90)
+            .attr("y", 45)
+            .attr("letter-spacing", "0.0625em")
+            .text(function (d) { return "Source: " + d.source })
 
-        artistLabel.style("visibility", this.state.viewLabel)
+        // Genres
+        nameLabels
+            .append("text")
+            .style("font-size", 14)
+            .attr("x", 90)
+            .attr("y", 65)
+            .attr("letter-spacing", "0.0625em")
+            .text(function (d) { 
+                return "Genres: " + d.genres.slice(0, 3)
+            })
 
         node.on("click", (d, i) => {
                 let artist = i.__proto__;
                 window.open(artist.url, "_blank");
         });
         
-        const rect = artistLabel
-            .append("rect")
-            .attr("width", 300)
-            .attr("height", 50)
-            .attr("fill", "white")
-            .attr("stroke", "black")
-        
-        const text = artistLabel
-            .append("text")
-            .text("This isn't exacgtly progress")
 
         // What to do when there has been a layout change in the grap
         simulation.on("tick", () => {
@@ -156,19 +218,9 @@ class Graph extends Component {
                 .attr("cy", d => d.y);
 
             nameLabels
-                .attr("x", function (d) { return d.x + 8; })
-                .attr("y", function (d) { return d.y; });
-
-            artistLabel
-                .attr("x", function (d) { return d.x - 150; })
-                .attr("y", function (d) { return d.y - 25;});
-            rect
-                .attr("x", function (d) { return d.x - 150; })
-                .attr("y", function (d) { return d.y - 25; });
-            text
-                .attr("x", function (d) { return d.x - 150; })
-                .attr("y", function (d) { return d.y - 25; });
-
+                .attr("transform", d => {
+                    return "translate(" + d.x + "," + d.y + ")"
+                });
         });
     }
 

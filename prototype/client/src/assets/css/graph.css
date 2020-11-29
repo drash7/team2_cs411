@@ -1,13 +1,14 @@
-text.label {
+g.label {
   color: black;
-  font-family: sans-serif;
+  font-family: Courier;
   font-size: .8em;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s linear;
+  z-index: 1000;
 }
 
-.node:hover text.label {
+.node:hover g.label {
   opacity: 1;
   visibility: visible;
   opacity: 1;
