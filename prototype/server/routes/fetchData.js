@@ -30,23 +30,20 @@ client.on("error", function (error) {
 router.route('/')
     .get(async (req, res, next) => {
         let accessToken = req.query.access_token
+        //console.log(accessToken);
+
         const options = {
-            method: 'GET',
-            headers: {  Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${accessToken}` }
+            url: 'https://api.spotify.com/v1/users/jmperezperez',
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            json: true
         };
 
-        const url = 'https://api.spotify.com/v1/users/jmperezperez';
-        const rawData = await fetch(url, {options});
-        const jsData = await rawData.json();
-        console.log(jsData);
-
-        // request.get(options, function (error, response, body) {
-        //     //console.log(body);
-        //     res.send(body);
-        // });
-
+        request.get(options, function(error, response, body) {
+            res.send(body);
+            //console.log(body);
+        });
     })
 
 
