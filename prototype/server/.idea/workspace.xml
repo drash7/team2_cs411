@@ -24,11 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/fetchData.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +76,10 @@
       <workItem from="1606053352211" duration="9189000" />
       <workItem from="1606068919646" duration="4226000" />
       <workItem from="1606645144721" duration="46000" />
-      <workItem from="1606649986323" duration="830000" />
+      <workItem from="1606649986323" duration="1332000" />
+      <workItem from="1606652131626" duration="8000" />
+      <workItem from="1606652176808" duration="55000" />
+      <workItem from="1606652255330" duration="173000" />
     </task>
     <servers />
   </component>
@@ -108,22 +107,22 @@
       <screen x="0" y="25" width="1440" height="792" />
     </state>
     <state x="574" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.792@0.25.1440.792" timestamp="1606054169443" />
-    <state width="1204" height="371" key="GridCell.Tab.0.bottom" timestamp="1606650855662">
+    <state width="1204" height="425" key="GridCell.Tab.0.bottom" timestamp="1606652389610">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1204" height="371" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1606650855662" />
-    <state width="1204" height="371" key="GridCell.Tab.0.center" timestamp="1606650855660">
+    <state width="1204" height="425" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1606652389610" />
+    <state width="1204" height="425" key="GridCell.Tab.0.center" timestamp="1606652389609">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1204" height="371" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1606650855660" />
-    <state width="1204" height="371" key="GridCell.Tab.0.left" timestamp="1606650855660">
+    <state width="1204" height="425" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1606652389609" />
+    <state width="1204" height="425" key="GridCell.Tab.0.left" timestamp="1606652389608">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1204" height="371" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1606650855660" />
-    <state width="1204" height="371" key="GridCell.Tab.0.right" timestamp="1606650855661">
+    <state width="1204" height="425" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1606652389608" />
+    <state width="1204" height="425" key="GridCell.Tab.0.right" timestamp="1606652389610">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1204" height="371" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1606650855661" />
+    <state width="1204" height="425" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1606652389610" />
     <state width="1204" height="24" key="GridCell.Tab.1.bottom" timestamp="1606073151853">
       <screen x="0" y="25" width="1440" height="792" />
     </state>

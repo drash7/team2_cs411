@@ -26,6 +26,7 @@ client.on("error", function (error) {
     console.error(error);
 });
 
+//url: 'https://api.spotify.com/v1/me/top/artists'
 
 router.route('/')
     .get(async (req, res, next) => {
@@ -33,7 +34,7 @@ router.route('/')
         //console.log(accessToken);
 
         const options = {
-            url: 'https://api.spotify.com/v1/users/jmperezperez',
+            url: 'https://api.spotify.com/v1/artists/0OdUWJ0sBjDrqHygGUXeCF',
             headers: {
                 'Authorization': 'Bearer ' + accessToken
             },
@@ -42,7 +43,7 @@ router.route('/')
 
         request.get(options, function(error, response, body) {
             res.send(body);
-            //console.log(body);
+            console.log(body);
         });
     })
 
