@@ -8,6 +8,7 @@ import './../../assets/css/graph.css';
 class Graph extends Component {
     constructor(props) {
         super(props)
+        this.state = { viewLabel: "hidden" };
         this.createGraph = this.createGraph.bind(this)
     }
     componentDidMount() {
@@ -19,15 +20,6 @@ class Graph extends Component {
     // This builds the actual graph
     createGraph() {
         const NODE = this.node;
-
-        const link_colors = {
-            metal: "#6494AA",
-            latin: "#A63D40",
-            jazz: "#E9B872",
-            electronic: "#90A959",
-            funk: "#6494AA",
-            soul: "#90A959"
-        };
 
         // Centers the graph view based on passed-in width and height parameter
         select(NODE)
@@ -68,9 +60,9 @@ class Graph extends Component {
         const links = graph.links.map(d => Object.create(d));
         const nodes = graph.nodes.map(d => Object.create(d));
 
-        // Node Coloring
+        // Node Coloring Based off of genres
         const node_color = d3.scaleOrdinal()
-            .domain(graph.nodes.map(n => n.genres[0]))
+            .domain(new Set(graph.nodes.map(n => n.genres[0])))
             .range(colors.genreColors);
 
         // Right now, the color for links is static, no matter what
@@ -119,16 +111,37 @@ class Graph extends Component {
             .attr("r", 10)
             .attr("fill", d => node_color(d.__proto__.genres[0]))
             .call(drag(simulation))
+            .style("cursor", "pointer")
 
         // Append labels to nodes
         // Label appears based on node hover behavior
-        const labels = select(NODE)
+        const nameLabels = select(NODE)
             .selectAll("g")
             .append("text")
             .attr("class", "label")
             .attr("dx", 12)
             .attr("dy", ".35em")
             .text(function (d) { return d.id });
+
+        const artistLabel = select(NODE).selectAll("g").append("g")
+
+        artistLabel.style("visibility", this.state.viewLabel)
+
+        node.on("click", (d, i) => {
+                let artist = i.__proto__;
+                window.open(artist.url, "_blank");
+        });
+        
+        const rect = artistLabel
+            .append("rect")
+            .attr("width", 300)
+            .attr("height", 50)
+            .attr("fill", "white")
+            .attr("stroke", "black")
+        
+        const text = artistLabel
+            .append("text")
+            .text("This isn't exacgtly progress")
 
         // What to do when there has been a layout change in the grap
         simulation.on("tick", () => {
@@ -142,9 +155,20 @@ class Graph extends Component {
                 .attr("cx", d => d.x)
                 .attr("cy", d => d.y);
 
-            labels
+            nameLabels
                 .attr("x", function (d) { return d.x + 8; })
                 .attr("y", function (d) { return d.y; });
+
+            artistLabel
+                .attr("x", function (d) { return d.x - 150; })
+                .attr("y", function (d) { return d.y - 25;});
+            rect
+                .attr("x", function (d) { return d.x - 150; })
+                .attr("y", function (d) { return d.y - 25; });
+            text
+                .attr("x", function (d) { return d.x - 150; })
+                .attr("y", function (d) { return d.y - 25; });
+
         });
     }
 
