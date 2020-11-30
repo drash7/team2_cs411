@@ -27,47 +27,43 @@ client.on("error", function (error) {
 });
 
 
-// lets assume that we ask for username to the user after log-in with spotify
-let username = 'yongjinc';
+//testing values
+const user_code = uuidv4();     // on click generate new cod
+const username = 'yongjinc';    // ask for username after log-in with spotify from front-end
 
 
 router.get('/', async (req, res, next) => {
-    let match = await asyncExists(username);
+    let user_exist = await asyncExists(user_code);
 
     //if user has uuid assigned
-    if (match) {
+    if (user_exist) {
         console.log("User found in cache");
-        let uuid_exist = await asyncGet(username);
+        let getUsername = await asyncGet(user_code);
         //let jsonSaved = JSON.parse(data_exist);
 
         let inCache = {
-            user: username,
-            cached : true,
-            uuid : uuid_exist
+            user: getUsername,
+            uuid : user_code,
+            cached : true
         }
-
         res.send(inCache);
-
     }
 
     // not in cache, generate new uuid
     else {
-        console.log("Not in cache, generate a new code NOW");
-        const user_code = await uuidv4();
-        await asyncSet(username, user_code);
+        console.log("Not in cache, generate add to DB");
+        await asyncSet(user_code, username);
 
-        let response = {
+        let userInfo = {
             user: username,
-            cached: false,
-            uuid: user_code
+            uuid: user_code,
+            cached: false
         }
 
         // change expiration time, one code per one user name?
-        await asyncExpire(username, 1000);
-        res.send(response);
-
+        await asyncExpire(user_code, 1000);
+        res.send(userInfo);
     }
-
 })
 
 

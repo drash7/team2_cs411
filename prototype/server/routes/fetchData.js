@@ -5,6 +5,7 @@ const request = require('request')
 const fetch = require('node-fetch');
 const CONFIG = require('../config/fetchConfigs');
 
+
 // redis imports
 const redis = require('redis');
 const client = redis.createClient();
