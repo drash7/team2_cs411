@@ -16,14 +16,15 @@ const asyncExists = promisify(client.exists).bind(client);
 const asyncExpire = promisify(client.expire).bind(client);
 
 
-client.on("error", function (error) {
-    console.error(error);
-});
-
 
 /* generating uuid for inviting and adding friends
    uuid version 4, randomly generated uuid
    functionality : click to copy your code */
+
+
+client.on("error", function (error) {
+    console.error(error);
+});
 
 
 // lets assume that we ask for username to the user after log-in with spotify
@@ -68,11 +69,6 @@ router.get('/', async (req, res, next) => {
     }
 
 })
-
-
-
-
-
 
 
 module.exports = router;
