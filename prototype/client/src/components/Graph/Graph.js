@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import { select } from 'd3-selection';
 import colors from "./Colors";
 import './../../assets/css/graph.css';
-import { max } from 'd3';
 
 
 class Graph extends Component {
@@ -67,22 +66,20 @@ class Graph extends Component {
             .range(colors.genreColors);
 
         // Right now, the color for links is static, no matter what
-        function link_color(d) {
-            return "#171717";
-        }
+        const stroke_color = "#171717";
 
         // Force simulation treats nodes as "particles" with repelling and attracting forces
         const simulation = d3.forceSimulation(nodes)
             // .force("link", d3.forceLink(links).id(d => d.id).distance(200).strength(0.1))
-            .force("charge", d3.forceManyBody(links).strength(-200))
+            .force("charge", d3.forceManyBody(links).strength(-200 * this.props.width / 2100))
             .force("link", d3.forceLink(links).id(d => d.id).strength(0.0001))
             .force("x", d3.forceX().x(d => {
 
                 switch (d.__proto__.source) {
                     case this.props.users.user1:
-                        return -500;
+                        return -this.props.width / 4;
                     case this.props.users.user2:
-                        return 500;
+                        return this.props.width / 4;
                     default:
                         return 0;
                 }
@@ -95,15 +92,14 @@ class Graph extends Component {
             .selectAll("line")
             .data(links)
             .join("line")
-            .attr("stroke", d => link_color(d))
+            .attr("stroke", stroke_color)
             .attr("stroke-width", 1)
             .attr("stroke-opacity", 0.07);
 
         // Give node properties
         const node = select(NODE)
             .attr("stroke", "#171717")
-            .attr("stroke-opacity", 1)
-            .attr("stroke-width", 0.7)
+            .attr("stroke-width", 0)
             .selectAll("circle")
             .data(nodes)
             .join("g")
@@ -111,22 +107,48 @@ class Graph extends Component {
             .append("circle")
             .attr("r", 10)
             .attr("fill", d => node_color(d.__proto__.genres[0]))
+            .attr("fill-opacity", 1)
             .call(drag(simulation))
             .style("cursor", "pointer")
         
-            select(NODE).selectAll("circle")
-                .on('mouseover', function (d, i) {
-                    select(this).transition()
-                        .duration('50')
-                        .attr("r", 20)
-                })
-                .on('mouseout', function (d, i) {
-                    select(this).transition()
-                        .duration('50')
-                        .attr("r", 10)
-                });
-            
-        
+        select(NODE).selectAll("circle")
+            .on('mouseover', function (d, i) {
+                let artist = i.__proto__;
+                
+                link.transition()
+                    .duration(100)
+                    .attr("stroke-width", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 2 : 1)
+                    .attr("stroke-opacity", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 0.9 : 0.02);
+
+                node.transition()
+                    .duration(100)
+                    .attr("fill-opacity", d => {
+                        if (artist.association.includes(d.__proto__.id) || artist.id === d.__proto__.id) {
+                            return 1
+                        } else {
+                            return 0
+                        }
+                    });
+
+                select(this).transition()
+                    .duration(100)
+                    .attr("r", 25);
+            })
+            .on('mouseout', function (d, i) {
+                link.transition()
+                    .duration(100)
+                    .attr("stroke-width", 1)
+                    .attr("stroke-opacity", 0.07);
+                
+                node.transition()
+                    .duration(100)
+                    .attr("fill-opacity", 1);
+
+                select(this).transition()
+                    .duration(100)
+                    .attr("r", 10);
+            });
+
         // Append labels to nodes
         // Label appears based on node hover behavior
         const nameLabels = select(NODE).selectAll("g").append("g")
@@ -143,7 +165,7 @@ class Graph extends Component {
                 let s = d.source.length;
                 let max = Math.max(n, g, s);
                 let result = 90
-                if (max == g || max == s){
+                if (max === g || max === s){
                     result += (8+Math.max(n, g, s))*10
                 } else {
                     result += (8+Math.max(n, g, s))*11
@@ -152,6 +174,9 @@ class Graph extends Component {
             })
             .attr("height", 90)
             .attr("fill", "white")
+            .attr("stroke-opacity", 1)
+            .attr("stroke", stroke_color)
+            .attr("stroke-width", 1)
             // .attr("stroke-width", 0.5)
             // .attr("stroke", "#CCCCCC")
             .attr("rx", 10)
@@ -166,7 +191,6 @@ class Graph extends Component {
             .attr("x", 10)
             .attr("y", 10)
             .attr('xlink:href', function (d) { 
-                console.log(d.photo);
                 return d.photo;
             })
 
@@ -203,7 +227,6 @@ class Graph extends Component {
                 let artist = i.__proto__;
                 window.open(artist.url, "_blank");
         });
-        
 
         // What to do when there has been a layout change in the grap
         simulation.on("tick", () => {
