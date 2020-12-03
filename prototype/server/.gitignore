@@ -1,6 +1,6 @@
 
 #git ignore config
-config/
+config/fetchConfigs.js
 
 # Logs
 logs
