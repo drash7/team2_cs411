@@ -9,7 +9,7 @@ const users = {
 function App() {
   return (
     <div>
-      <Graph users={users} graph={data} width={window.innerWidth} height={window.innerHeight}/>
+      <Graph users={users} graph={data} width={window.innerWidth} height={2*window.innerHeight/3}/>
     </div>
   );
 }
