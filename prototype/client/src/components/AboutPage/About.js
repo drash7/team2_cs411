@@ -1,5 +1,0 @@
-{
-    /*
-    setup an About page
-    */
-}
