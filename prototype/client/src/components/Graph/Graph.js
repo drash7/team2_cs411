@@ -3,13 +3,17 @@ import * as d3 from 'd3';
 import { select } from 'd3-selection';
 import colors from "./Colors";
 import './../../assets/css/graph.css';
-import { max } from 'd3';
 
 
 class Graph extends Component {
     constructor(props) {
         super(props)
-        this.state = { viewLabel: "hidden" };
+        this.state = {
+            viewLabel: "hidden",
+            titleStyle: {
+                display: "inline"
+            }
+        };
         this.createGraph = this.createGraph.bind(this)
     }
     componentDidMount() {
@@ -66,23 +70,19 @@ class Graph extends Component {
             .domain(new Set(graph.nodes.map(n => n.genres[0])))
             .range(colors.genreColors);
 
-        // Right now, the color for links is static, no matter what
-        function link_color(d) {
-            return "#171717";
-        }
+        // Color for all stroke related things
+        const stroke_color = "#171717";
 
         // Force simulation treats nodes as "particles" with repelling and attracting forces
         const simulation = d3.forceSimulation(nodes)
-            // .force("link", d3.forceLink(links).id(d => d.id).distance(200).strength(0.1))
-            .force("charge", d3.forceManyBody(links).strength(-200))
+            .force("charge", d3.forceManyBody(links).strength(-200 * this.props.width / 2100))
             .force("link", d3.forceLink(links).id(d => d.id).strength(0.0001))
             .force("x", d3.forceX().x(d => {
-
                 switch (d.__proto__.source) {
                     case this.props.users.user1:
-                        return -500;
+                        return -this.props.width / 4;
                     case this.props.users.user2:
-                        return 500;
+                        return this.props.width / 4;
                     default:
                         return 0;
                 }
@@ -95,15 +95,14 @@ class Graph extends Component {
             .selectAll("line")
             .data(links)
             .join("line")
-            .attr("stroke", d => link_color(d))
+            .attr("stroke", stroke_color)
             .attr("stroke-width", 1)
             .attr("stroke-opacity", 0.07);
 
         // Give node properties
         const node = select(NODE)
             .attr("stroke", "#171717")
-            .attr("stroke-opacity", 1)
-            .attr("stroke-width", 0.7)
+            .attr("stroke-width", 0)
             .selectAll("circle")
             .data(nodes)
             .join("g")
@@ -111,22 +110,55 @@ class Graph extends Component {
             .append("circle")
             .attr("r", 10)
             .attr("fill", d => node_color(d.__proto__.genres[0]))
+            .attr("fill-opacity", 1)
             .call(drag(simulation))
             .style("cursor", "pointer")
         
-            select(NODE).selectAll("circle")
-                .on('mouseover', function (d, i) {
-                    select(this).transition()
-                        .duration('50')
-                        .attr("r", 20)
-                })
-                .on('mouseout', function (d, i) {
-                    select(this).transition()
-                        .duration('50')
-                        .attr("r", 10)
-                });
-            
-        
+        // Responsible for link and hover behavior for links and nodes
+        select(NODE).selectAll("circle")
+            .on('mouseover', function (d, i) {
+                let artist = i.__proto__;
+                
+                // Accent links with hovered artist, lighten those that aren't
+                link.transition()
+                    .duration(100)
+                    .attr("stroke-width", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 2 : 1)
+                    .attr("stroke-opacity", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 0.9 : 0.02);
+
+                // Hide away nodes that aren't either hovered or connected to
+                node.transition()
+                    .duration(100)
+                    .attr("fill-opacity", d => {
+                        if (artist.association.includes(d.__proto__.id) || artist.id === d.__proto__.id) {
+                            return 1
+                        } else {
+                            return 0
+                        }
+                    });
+                
+                // Make the hovered node a bicc boi
+                select(this).transition()
+                    .duration(100)
+                    .attr("r", 25);
+            })
+            .on('mouseout', function (d, i) {
+                // Make links go back to normal
+                link.transition()
+                    .duration(100)
+                    .attr("stroke-width", 1)
+                    .attr("stroke-opacity", 0.07);
+                
+                // Make nodes go back to normal
+                node.transition()
+                    .duration(100)
+                    .attr("fill-opacity", 1);
+
+                // Make current node be normal sized
+                select(this).transition()
+                    .duration(100)
+                    .attr("r", 10);
+            });
+
         // Append labels to nodes
         // Label appears based on node hover behavior
         const nameLabels = select(NODE).selectAll("g").append("g")
@@ -134,16 +166,17 @@ class Graph extends Component {
         nameLabels
             .attr("class", "label")
         
-        // RECTANGLE
+        // BACKGROUND RECTANGLE
         nameLabels
             .append("rect")
+            // Calculate width of rectangle based off of length of text using some heuristics
             .attr("width", d => {
                 let n = d.id.length;
                 let g = d.genres.slice(0, 3).toString().length;
                 let s = d.source.length;
                 let max = Math.max(n, g, s);
                 let result = 90
-                if (max == g || max == s){
+                if (max === g || max === s){
                     result += (8+Math.max(n, g, s))*10
                 } else {
                     result += (8+Math.max(n, g, s))*11
@@ -152,25 +185,24 @@ class Graph extends Component {
             })
             .attr("height", 90)
             .attr("fill", "white")
-            // .attr("stroke-width", 0.5)
-            // .attr("stroke", "#CCCCCC")
+            .attr("stroke-opacity", 1)
+            .attr("stroke", stroke_color)
+            .attr("stroke-width", 1)
             .attr("rx", 10)
             .style("text-shadow", "1em");
         
-        // IMAGE
+        // ARTIST IMAGE
         nameLabels
             .append("image")
-            // .attr("class", "label")
             .attr('width', 70)
             .attr('height', 70)
             .attr("x", 10)
             .attr("y", 10)
             .attr('xlink:href', function (d) { 
-                console.log(d.photo);
                 return d.photo;
             })
 
-        // NAME
+        // ARTIST NAME
         nameLabels
             .append("text")
             .style("font-size", 18)
@@ -188,7 +220,7 @@ class Graph extends Component {
             .attr("letter-spacing", "0.0625em")
             .text(function (d) { return "Source: " + d.source })
 
-        // Genres
+        // GENRES
         nameLabels
             .append("text")
             .style("font-size", 14)
@@ -198,14 +230,14 @@ class Graph extends Component {
             .text(function (d) { 
                 return "Genres: " + d.genres.slice(0, 3)
             })
-
+        
+        // Clicking on node leads to artist spotify page
         node.on("click", (d, i) => {
                 let artist = i.__proto__;
                 window.open(artist.url, "_blank");
         });
-        
 
-        // What to do when there has been a layout change in the grap
+        // What to do when there has been a layout change in the graph
         simulation.on("tick", () => {
             link
                 .attr("x1", d => d.source.x)
@@ -226,9 +258,21 @@ class Graph extends Component {
 
     // Render the actual graph, appending it to an SVG (scaleable vector graphic.) using ref
     render() {
-        return <svg className=".svg-container" ref={node => this.node = node}
-            width={this.props.width} height={this.props.height}>
-        </svg>
+        return (
+        // Wraps Around graph
+        <div className="graphWrapper">
+            {/* Labels */}
+            <span style={{width: "100%", textAlign: "center", display: "block"}}>
+                <h2 style={{display: "inline-block", width: "30%"}}>{this.props.users.user1}</h2>
+                <h2 style={{display: "inline-block", width: "30%"}}>Both</h2>
+                <h2 style={{display: "inline-block", width: "30%"}}>{this.props.users.user2}</h2>
+            </span>
+            {/* Graph SVG */}
+            <svg className=".svg-container" ref={node => this.node = node}
+                width={this.props.width} height={this.props.height}>
+            </svg>
+        </div>
+        )
     }
 }
 export default Graph

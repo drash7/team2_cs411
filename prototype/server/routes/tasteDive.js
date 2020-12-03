@@ -26,7 +26,4 @@ fetchData();
 
 
 
-
-
-
 module.exports = router;
