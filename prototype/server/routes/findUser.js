@@ -22,20 +22,22 @@ const asyncExpire = promisify(client.expire).bind(client);
    uuid version 4, randomly generated uuid
    functionality : bridge a friend enter your friend's code */
 
-
-
 client.on("error", function (error) {
     console.error(error);
 });
 
 
 // take uuid as an input through get or post request query from front-end
-let uuid_input = '9ab2d102-0abc-4558-879d-155e124210dd';
+let uuid_input = '1a0ac8fa-edcb-4b21-80fe-43a616b1d8cb';
+
 
 router.get('/', async (req, res, next) => {
     console.log('uuid received');
+
+    //const uuid = req.body.uuid;
     let user_exist = await asyncExists(uuid_input);
     let uuid_valid = await uuidValidate(uuid_input);
+
 
     // check if uuid is valid and user exist in DB
     if (uuid_valid && user_exist) {
@@ -47,7 +49,7 @@ router.get('/', async (req, res, next) => {
         let userInfo = {
             user: friend,
             uuid : uuid_input,
-            cached : true
+            valid : uuid_valid
         }
         res.send(userInfo);
     }
@@ -59,20 +61,6 @@ router.get('/', async (req, res, next) => {
 
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

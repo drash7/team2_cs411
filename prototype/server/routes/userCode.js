@@ -1,7 +1,4 @@
 //project imports
-const express = require('express');
-const router = express.Router();
-const CONFIG = require('../config/fetchConfigs');
 const { v4: uuidv4 } = require('uuid');
 
 // redis imports
@@ -27,32 +24,32 @@ client.on("error", function (error) {
 });
 
 
-//testing values
-const user_code = uuidv4();     // on click generate new cod
-const username = 'yongjinc';    // ask for username after log-in with spotify from front-end
+//function returns JSON data object with username, uuid and cache status
+const getUserInfo = async username => {
 
-
-router.get('/', async (req, res, next) => {
-    let user_exist = await asyncExists(user_code);
+    //check if user already has uuid generated
+    let user_exist = await asyncExists(username);
 
     //if user has uuid assigned
     if (user_exist) {
         console.log("User found in cache");
-        let getUsername = await asyncGet(user_code);
-        //let jsonSaved = JSON.parse(data_exist);
+        let get_code = await asyncGet(username);
 
-        let inCache = {
-            user: getUsername,
-            uuid : user_code,
-            cached : true
+        const userInfo = {
+            user: username,
+            uuid : get_code,
+            cached: true
+
         }
-        res.send(inCache);
+        return userInfo;
     }
 
     // not in cache, generate new uuid
     else {
         console.log("Not in cache, generate add to DB");
-        await asyncSet(user_code, username);
+        const user_code = uuidv4();                 // generate new uuid
+        await asyncSet(username, user_code);
+        await asyncSet(user_code, username);        // used later to find user using uuid
 
         let userInfo = {
             user: username,
@@ -60,11 +57,14 @@ router.get('/', async (req, res, next) => {
             cached: false
         }
 
+        await asyncExpire(username, 1000);
+        await asyncExpire(user_code,1000)
         // change expiration time, one code per one user name?
-        await asyncExpire(user_code, 1000);
-        res.send(userInfo);
+        return userInfo
     }
-})
+}
 
 
-module.exports = router;
+
+
+module.exports = {getUserInfo};
