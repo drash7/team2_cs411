@@ -25,7 +25,7 @@ router.route('/login')
                 scope: scope,
                 redirect_uri: redirect_uri,
             }))
-})
+    })
 
 
 //redirect user to spotify login page

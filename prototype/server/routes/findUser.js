@@ -39,7 +39,7 @@ router.get('/', async (req, res, next) => {
     let uuid_valid = await uuidValidate(uuid_input);
 
 
-    // check if uuid is valid and user exist in DB
+    // check if uuid is valid and user exist in DB z
     if (uuid_valid && user_exist) {
 
         // account found in the cache, ready to be connected!

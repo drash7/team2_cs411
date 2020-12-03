@@ -22,15 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/dump.rdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/fetchData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/findUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/findUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/userCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/userCode.js" afterDir="false" />
-    </list>
+    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +55,11 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.bin/www">
     <configuration name="findUser.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/routes/findUser.js" working-dir="$PROJECT_DIR$/routes">
@@ -97,7 +94,9 @@
       <workItem from="1606723980014" duration="6474000" />
       <workItem from="1606829948393" duration="5000" />
       <workItem from="1606915153708" duration="848000" />
-      <workItem from="1607005756405" duration="11718000" />
+      <workItem from="1607005756405" duration="94000" />
+      <workItem from="1607022516980" duration="111000" />
+      <workItem from="1607022677639" duration="424000" />
     </task>
     <servers />
   </component>
@@ -125,30 +124,26 @@
       <screen x="0" y="25" width="1440" height="792" />
     </state>
     <state x="727" y="171" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.792@0.25.1440.792" timestamp="1606726897006" />
-    <state x="574" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1607016560551">
+    <state x="574" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606054169443">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state x="574" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.792@0.25.1440.792" timestamp="1607016560551" />
-    <state width="1382" height="2" key="GridCell.Tab.0.bottom" timestamp="1607021653774">
+    <state x="574" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.792@0.25.1440.792" timestamp="1606054169443" />
+    <state width="1382" height="336" key="GridCell.Tab.0.bottom" timestamp="1607023091004">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1382" height="2" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1607021653774" />
-    <state width="1382" height="172" key="GridCell.Tab.0.bottom/0.25.1440.793@0.25.1440.793" timestamp="1607014440013" />
-    <state width="1382" height="2" key="GridCell.Tab.0.center" timestamp="1607021653774">
+    <state width="1382" height="336" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1607023091004" />
+    <state width="1382" height="336" key="GridCell.Tab.0.center" timestamp="1607023091003">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1382" height="2" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1607021653774" />
-    <state width="1382" height="172" key="GridCell.Tab.0.center/0.25.1440.793@0.25.1440.793" timestamp="1607014440012" />
-    <state width="1382" height="2" key="GridCell.Tab.0.left" timestamp="1607021653773">
+    <state width="1382" height="336" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1607023091003" />
+    <state width="1382" height="336" key="GridCell.Tab.0.left" timestamp="1607023091003">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1382" height="2" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1607021653773" />
-    <state width="1382" height="172" key="GridCell.Tab.0.left/0.25.1440.793@0.25.1440.793" timestamp="1607014440011" />
-    <state width="1382" height="2" key="GridCell.Tab.0.right" timestamp="1607021653774">
+    <state width="1382" height="336" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1607023091003" />
+    <state width="1382" height="336" key="GridCell.Tab.0.right" timestamp="1607023091004">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
-    <state width="1382" height="2" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1607021653774" />
-    <state width="1382" height="172" key="GridCell.Tab.0.right/0.25.1440.793@0.25.1440.793" timestamp="1607014440012" />
+    <state width="1382" height="336" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1607023091004" />
     <state width="1204" height="24" key="GridCell.Tab.1.bottom" timestamp="1606073151853">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
