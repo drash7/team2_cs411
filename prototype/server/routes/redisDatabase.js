@@ -6,6 +6,8 @@ const redis = require('redis');
 const client = redis.createClient();
 const {promisify} = require('util');
 
+//redis-json imports
+
 const Redis = require('ioredis');
 const JSONCache = require('redis-json');
 const redisDB = new Redis();
@@ -31,40 +33,39 @@ client.on("error", function (error) {
    This is our WEBSITE generated data set */
 
 const generateCode = async username => {
+    console.log("Function called: generateCode");
 
     //check if user already has uuid generated
     let user_exist = await asyncExists(username);
 
     //if user has uuid assigned
     if (user_exist) {
-        console.log("User uuid is found in cache");
+        console.log("User already has uuid assigned");
         let get_code = await asyncGet(username);
-
         const user = {
-            user: username,
+            username: username,
             uuid: get_code,
             cached: true
-
         }
         return user;
     }
 
     // not in cache, generate new uuid
     else {
-        console.log("Not in cache, generate new id");
+        console.log("Not found in cache, generate new id");
         const user_code = uuidv4();                 // generate new uuid
 
         // user id and username pair
         await asyncSet(username, user_code);
-
         let user = {
-            user: username,
+            username: username,
             uuid: user_code,
             cached: false
         }
 
-        await asyncExpire(username, 1000);
+        // this is for testing purpose
         // change expiration time, one code per one user name?
+        await asyncExpire(username, 1000);
         return user
     }
 }
@@ -75,6 +76,8 @@ const generateCode = async username => {
    this function will be called inside index.js file */
 
 const storeUserInfo = async (uuid, storeData) => {
+    console.log("Function called: storeUserInfo");
+
     //store User data passed in from spotify and UUID generated
     const jsonCache = new JSONCache(redisDB);
     let match = await asyncExists(uuid);
@@ -85,9 +88,9 @@ const storeUserInfo = async (uuid, storeData) => {
         return result;
 
     } else {
-        console.log("Store user data in redis database");
-        await asyncSet(uuid, "User Account Data");
+        await asyncSet(uuid, "in Database");
         await jsonCache.set(uuid, storeData);
+        console.log("Store user data in redis database");
     }
 }
 

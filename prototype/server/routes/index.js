@@ -90,6 +90,9 @@ router.route('/callback')
                     let result = await UUID.storeUserInfo(build.user.uuid, build);
                     res.send(result);
                 });
+
+
+            // No access granted
             } else {
                 res.redirect('/#' + querystring.stringify({error: 'invalid_token'}));
             }

@@ -2,13 +2,18 @@
 const express = require('express');
 const router = express.Router();
 const { validate : uuidValidate } = require('uuid');
-const CONFIG = require('../config/fetchConfigs');
+const UUID = require('./redisDatabase');
 
 
 // redis imports
 const redis = require('redis');
 const client = redis.createClient();
 const {promisify} = require('util');
+
+//redis-json imports
+const Redis = require('ioredis');
+const JSONCache = require('redis-json');
+const redisDB = new Redis();
 
 //async returns 0 or 1 : true or false
 const asyncSet = promisify(client.set).bind(client);
@@ -28,34 +33,29 @@ client.on("error", function (error) {
 
 
 // take uuid as an input through get or post request query from front-end
-let uuid_input = '1a0ac8fa-edcb-4b21-80fe-43a616b1d8cb';
+let uuid_input = '96583f1e-3d1e-4ddd-ba59-0725935f71ae';
 
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
+    // take uuid as an input through get or post request query from front-end
     console.log('uuid received');
 
-    //const uuid = req.body.uuid;
+    // const uuid = req.body.uuid;
+    // check if uuid is valid and user exist in DB
     let user_exist = await asyncExists(uuid_input);
     let uuid_valid = await uuidValidate(uuid_input);
 
-
-    // check if uuid is valid and user exist in DB z
+    // account found in the cache, ready to be connected!
     if (uuid_valid && user_exist) {
-
-        // account found in the cache, ready to be connected!
-        console.log("Your friend found in cache");
-        let friend = await asyncGet(uuid_input);
-
-        let userInfo = {
-            user: friend,
-            uuid : uuid_input,
-            valid : uuid_valid
-        }
-        res.send(userInfo);
+        console.log("Your friend uuid is found");
+        const friend_result = await UUID.storeUserInfo(uuid_input, null);
+        let cache_flag = await asyncGet(uuid_input);
+        console.log(cache_flag);
+        res.send(friend_result);
     }
-
     else {
-        res.send("Cannot find a user with provided User Code");
+        // User not Found, direct to error page
+        res.send('Cannot find a user with provided User Code');
     }
 
 
