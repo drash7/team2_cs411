@@ -1,9 +1,9 @@
 //project imports
 const express = require('express');
 const router = express.Router();
-const CONFIG = require('../config/fetchConfigs');
-const { v4: uuidv4 } = require('uuid');
 const { validate : uuidValidate } = require('uuid');
+const CONFIG = require('../config/fetchConfigs');
+
 
 // redis imports
 const redis = require('redis');

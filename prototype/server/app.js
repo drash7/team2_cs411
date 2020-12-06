@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cors = require("cors");
 
 const indexRouter = require('./routes/index');
-const dataRouter = require('./routes/fetchData');
 const findUser = require('./routes/findUser');
 
 
@@ -24,7 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/artist', dataRouter);
 app.use('/invite', findUser);
 
 // catch 404 and forward to error handler
