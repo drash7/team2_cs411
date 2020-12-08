@@ -1,6 +1,6 @@
 const CONFIG = require("../CONFIG/fetchConfigs");
 
-const access_key = CONFIG.tasteDive.access_key;
+const accessKey = CONFIG.tasteDive.accessKey;
 
 // const API  = `https://tastedive.com/api/similar?q=${artist}&info=1&k=${access_key}`
 
@@ -15,7 +15,7 @@ async function getDataAPI(artists) {
       return{
         id: artist,
         associations:(await axios.get (
-          `https://tastedive.com/api/similar?q=${artist}&info=1&k=${access_key}`
+          `https://tastedive.com/api/similar?q=${artist}&info=1&k=${accessKey}`
         )).data.Similar.Results.map(_ => _.Name)
       } 
       
