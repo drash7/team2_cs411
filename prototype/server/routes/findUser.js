@@ -52,6 +52,7 @@ router.get('/', async (req, res) => {
         let cache_flag = await asyncGet(uuid_input);
         console.log(cache_flag);
         res.send(friend_result);
+        console.log(friend_result);
     }
     else {
         // User not Found, direct to error page
