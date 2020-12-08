@@ -122,7 +122,7 @@ async function formatGraphData(user1Data, user2Data, userNames) {
             }
         )
         // Create Links to associations
-        assoc.forEach(artistAssoc => links.push({ source: artist, destination: artistAssoc }))
+        assoc.forEach(artistAssoc => links.push({ source: artist.name, destination: artistAssoc }))
     });
 
     // Parse through user 2 top artists
@@ -140,7 +140,7 @@ async function formatGraphData(user1Data, user2Data, userNames) {
                 }
             )
             // Create Links to associations
-            artistAssociations[artist].forEach(artistAssoc => links.push({ source: artist, destination: artistAssoc }))
+            assoc.forEach(artistAssoc => links.push({ source: artist.name, destination: artistAssoc }))
         }
     });
 
