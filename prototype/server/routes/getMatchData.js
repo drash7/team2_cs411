@@ -5,8 +5,6 @@
 testData = require("../test-data/dummy_spotify_data.json");
 const CONFIG = require("../CONFIG/fetchConfigs");
 const accessKey = CONFIG.tasteDive.accessKey;
-const router = require("./index.js");
-const request = require('request')
 
 const elisson = testData.elisson.items;
 const rafael = testData.rafael.items;
@@ -16,19 +14,21 @@ const userNames = {
 }
 
 
-async function getArtistRecommendations(artist) {
-    const options = {
-        url: `/v1/artists/${artist}/related-artists`,
-        headers: { 'Authorization': 'Bearer ' + access_token },
-        json: true
-    };
 
-    request.get(options, async function (error, response, body) {
-        console.log(error)
-    })
-}
 
-getArtistRecommendations("0D3h8NZqNp7BN97JwtV6eW");
+// async function getArtistRecommendations(artist) {
+//     const options = {
+//         url: `/v1/artists/${artist}/related-artists`,
+//         headers: { 'Authorization': 'Bearer ' + access_token },
+//         json: true
+//     };
+
+//     request.get(options, async function (error, response, body) {
+//         console.log(error)
+//     })
+// }
+
+// getArtistRecommendations("0D3h8NZqNp7BN97JwtV6eW");
 
 async function formatGraphData(user1Data, user2Data, userNames) {
     // Create Nodes
@@ -47,6 +47,7 @@ async function formatGraphData(user1Data, user2Data, userNames) {
     // TODO: Change Taste Dive to call based off of single artist and get back all recommendations
 
     // console.log(relations);
+    let artistAssociations ;
 
     nodes = [];
     links = [];
@@ -58,12 +59,34 @@ async function formatGraphData(user1Data, user2Data, userNames) {
                 id: artist.name,
                 source: artist.name in user1ArtistsNames && user2ArtistsNames ? "both" : userNames.user1,
                 genres: artist.genres,
-                associations: relations,
+                associations: artist_associations[artist],
                 url: artist.external_urls.spotify,
                 photo: artist.images[2]
             }
         )
+        
+        artistAssociations[artist].forEach(artistAssoc => links.push({ source: artist, destination: artistAssoc }))
     });
+
+    user2Data.forEach(artist => {
+        // let relations;
+        if (!user2ArtistsNames.includes(artist.name)) {
+            nodes.push(
+                {
+                    id: artist.name,
+                    source: userNames.user2,
+                    genres: artist.genres,
+                    associations: artist_associations[artist],
+                    url: artist.external_urls.spotify,
+                    photo: artist.images[2]
+                }
+            )
+
+            artistAssociations[artist].forEach(artistAssoc => links.push({ source: artist, destination: artistAssoc }))
+        }
+    });
+
+    return {"nodes": nodes, "links": links}
 
     // console.log(nodes)
 
