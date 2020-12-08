@@ -4,9 +4,10 @@ export const accountObjOne = {
     lightTopLine: true, 
     lightTextDesc: true, 
     lightText: true, 
-    topLine: 'Account Information', 
-    description: `user ID:`,
-    headline : 'Hi #username#',
+    topLine: 'Hi #username# ·', 
+    description1: `user ID:`,
+    description2: `email:`,
+    description3: `country:`,
     img: require('../../assets/images/MusicBridgeLogo.png'), 
     start: '',
     alt: 'SomeImage'

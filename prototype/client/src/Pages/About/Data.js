@@ -4,15 +4,9 @@ export const aboutObjOne = {
     lightTopLine: true, 
     lightTextDesc: true, 
     lightText: true, 
-    topLine: 'Ut aliquam purus nec posuere ultrices.', 
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Nullam vitae arcu consequat urna sodales luctus. 
-                    Nunc eu ipsum sed nulla tempus ultricies. 
-                    Donec ac ante sodales, facilisis velit at, 
-                    pulvinar mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                    Morbi faucibus bibendum nulla nec molestie. Quisque venenatis faucibus ex, 
-                    nec efficitur nulla fringilla at. Sed egestas velit non porta pretium.`,
-    headline : 'Vestibulum maximus ante sit amet magna viverra scelerisque vel eu metus.',
+    topLine: 'About the Website', 
+    description: `MusicBridge helps you build a bridge between you and a friend's music taste. We use Spotify to find you and a friend's favourite artists in order to find and showcase common ground. This is done through an interactive graph that visualizes the intersection of your tastes and a playlist with tunes you might both like. Connect with a friend and happy bridging!`,
+    headline : 'Introduction',
     img: require('../../assets/images/MusicBridgeLogo.png'), 
     start: '',
     alt: 'SomeImage'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, DashboardSection } from '../../components'
-import { dashboardObjOne } from './Data';
+import { dashboardObjOne } from './Matching';
 
 const Dashboard = () => {
   return (

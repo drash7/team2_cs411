@@ -56,25 +56,25 @@ export const Img = styled.img`
 
 export const TopLine = styled.div`
     color: ${({ lightTopLine }) => (lightTopLine ? '#a9b3c1' : '#4B59F7')};
-    font-size: 18px;
-    line-height: 16px;
+    font-size: 50px;
+    line-height: 0;
     font-weight: 700;
-    letter-spacing: 1.4px;
-    margin-bottom: 16px;
+    letter-spacing: 1.2px;
+    margin-bottom: 50px;
 `;
 
 export const Heading = styled.h1`
-    margin-bottom: 24px;
-    font-size: 48px;
-    line-height: 1.1;
-    font-weight: 600;
+    margin-bottom: 17px;
+    font-size: 30px;
+    line-height: 2;
+    font-weight: 400;
     color: ${({ lightText }) => (lightText ? '#f7f8fa' : '#1c2237')};
 `;
 
 export const Subtitle = styled.p`
     max-width: 440px;
     margin-bottom: 35px;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 10px;
     color: ${({ lightTextDesc }) => (lightTextDesc ? '#a9b3c1' : '#1c2237')};
 `;
