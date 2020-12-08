@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const indexRouter = require('./routes/index');
 const findUser = require('./routes/findUser');
+const matchArtist = require('./routes/getMatchData');
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/invite', findUser);
+app.use('/artist', matchArtist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

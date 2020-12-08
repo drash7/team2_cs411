@@ -88,7 +88,8 @@ router.route('/callback')
                     uuid can be referenced in build.user.uui
                      */
                     let result = await UUID.storeUserInfo(build.user.uuid, build);
-                    res.send(result);
+                    //res.send(result);
+                    res.redirect('http://localhost:9000/artist' + '?access_token=' + access_token);
                 });
 
 
