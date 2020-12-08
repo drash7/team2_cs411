@@ -26,7 +26,7 @@ router.route('/')
         const options = {
 
             //https://api.spotify.com/v1/artists/{artistID}/related-artists
-            url: 'https://api.spotify.com/v1/me/top/artists',
+            url: 'https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/related-artists',
             headers: {
                 'Authorization': 'Bearer ' + accessToken
             },
