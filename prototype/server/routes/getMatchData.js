@@ -34,48 +34,102 @@ router.route('/')
         request.get(options,  async function(error, response, body) {
             const data = await formatGraphData(elisson, rafael, userNames)
             const graph = data[0], allArtistsNames = data[1];
+            const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
+            console.log(recommendations);
             res.send(graph);
         });
     })
 
-// Returns all recommended artists for each artist in the artists array
-async function getArtistRecommendations(artists) {
+// Used to wait in case we need to retry
+async function wait(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
+
+// Mechanism to retry calling the API in case we reach the rate limit
+async function fetch_retry(options, queryString, retries) {
+    let response = await fetch(queryString, options);
+    if (response.status == 429) {
+        if (retries > 0) {
+            await wait(response.headers.get("retry-after") * 1000).then(console.log("retrying"));
+            return await fetch_retry(options, queryString, retries-1);
+        } else {
+            return [];
+        }
+    } else {
+        return response
+    }
+}
+
+// Returns a list of 6 new artists to check out using TasteDive API and Spotify for Artist Profile Info
+async function getRecommendedArtistsTasteDive(artists) {
+
+    // Make call to TasteDivem API
+    const params = new URLSearchParams({
+        q: artists.join(","),
+        limit: 6,
+        type: "music",
+        k: CONFIG.tasteDive.accessKey
+    });
+    const queryString = 'https://tastedive.com/api/similar?' + params;
+    let response = await fetch(queryString);
+    const data = await response.json();
+    // Get names of all recommendations from taste dive
+    const recommendations = data.Similar.Results.map(a => a.Name);
+
+    // Used to store all spotify info for each recommended artist (ultimate result)
+    const recommendationsSpotify = {};
+    // Fetch options
+    const options = {
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        json: true
+    };
+
+    // Make multiple calls to spotify API
+    await Promise.all(
+        recommendations.map(async artist => {
+            const params = new URLSearchParams({
+                q: artist,
+                limit: 1,
+                type: "artist",
+            });
+
+            const queryString = 'https://api.spotify.com/v1/search?' + params;
+            const response1 = await fetch_retry(options, queryString, 10);
+            const data1 = await response1.json();
+            
+            const artistInfo = data1.artists.items[0];
+            // Save artist name, url, and little picture
+            recommendationsSpotify[artist] = {
+                name: artist,
+                url: artistInfo.external_urls.spotify,
+                photo: artistInfo.images[2].url
+            };
+        })
+    );
+    // Return desired result
+    return recommendationsSpotify;
+}
+
+// Returns all related artists for each artist in the artists array using spotify API
+async function getRelatedArtistsSpotify(artists) {
     let result = {}
 
-    // Used to wait in case we need to retry
-    async function wait(ms) {
-        return new Promise(resolve => {
-            setTimeout(resolve, ms);
-        });
-    }
-
-    // Mechanism to retry calling the API in case we reach the rate limit
-    async function fetch_retry(artist, retries) {
-        const options = {
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
-            },
-            json: true
-        };
-        
-        let response = await fetch(`https://api.spotify.com/v1/artists/${artist.id}/related-artists`, options);
-        if (response.status == 429) {
-            if (retries > 0) {
-                await wait(response.headers.get("retry-after") * 1000).then(console.log("retrying"));
-                return await fetch_retry(artist, retries - 1); 
-            } else {
-                return [];
-            }
-        } else {
-            return response
-        }        
-    }
+    const options = {
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        json: true
+    };
     
     // Get each artist's recommendations
     await Promise.all( 
         artists.map(async artist => {
-
-            const response = await fetch_retry(artist, 10);
+            const queryString = `https://api.spotify.com/v1/artists/${artist.id}/related-artists`;
+            const response = await fetch_retry(options, queryString, 10);
             const data = await response.json();
             result[artist.name] = data.artists.map(a => a.name);
         })
@@ -104,7 +158,7 @@ async function formatGraphData(user1Data, user2Data, userNames) {
     const allArtistsNames = [... new Set([...user1ArtistsNames, ...user2ArtistsNames])];
     const allArtistsIdAndNames = [... new Set([...user1ArtistsIdAndNames, ...user2ArtistsIdAndNames])];
 
-    let artistAssociations = await getArtistRecommendations(allArtistsIdAndNames);
+    let artistAssociations = await getRelatedArtistsSpotify(allArtistsIdAndNames);
 
     nodes = [];
     links = [];
