@@ -45,7 +45,6 @@ const generateCode = async username => {
         const user = {
             username: username,
             uuid: get_code,
-            cached: true
         }
         return user;
     }
@@ -60,7 +59,6 @@ const generateCode = async username => {
         let user = {
             username: username,
             uuid: user_code,
-            cached: false
         }
 
         // this is for testing purpose
@@ -75,7 +73,7 @@ const generateCode = async username => {
    JSON data contains our website + spotify user account data
    this function will be called inside index.js file */
 
-const storeUserInfo = async (uuid, storeData) => {
+const callDatabase = async (uuid, data = {}) => {
     console.log("Function called: storeUserInfo");
 
     //store User data passed in from spotify and UUID generated
@@ -84,16 +82,16 @@ const storeUserInfo = async (uuid, storeData) => {
 
     if (match) {
         console.log("UUID found in database");
-        const result = await jsonCache.get(uuid)
-        return result;
 
     } else {
         await asyncSet(uuid, "in Database");
-        await jsonCache.set(uuid, storeData);
+        await jsonCache.set(uuid, data);
         console.log("Store user data in redis database");
     }
+    const result = await jsonCache.get(uuid)
+    return result;
 }
 
 
 
-module.exports = {generateCode, storeUserInfo};
+module.exports = {generateCode, callDatabase};

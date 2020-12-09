@@ -57,6 +57,7 @@ router.get('/', async (req, res) => {
     else {
         // User not Found, direct to error page
         res.send('Cannot find a user with provided User Code');
+        // throw alert to front or display msg
     }
 
 

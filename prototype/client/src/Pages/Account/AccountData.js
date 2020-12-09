@@ -1,4 +1,14 @@
-export const accountObjOne = {
+
+// function callAPI() {
+//     fetch("http://localhost:3000/dashboard")
+//         .then(res.)
+//         .then(res => res.json())
+//         .then(res => console.log(res));
+// }
+
+
+
+const accountObjOne = {
     lightBg: false,
     imgStart: '', 
     lightTopLine: true, 
@@ -12,3 +22,9 @@ export const accountObjOne = {
     start: '',
     alt: 'SomeImage'
 };
+
+
+
+
+
+export {accountObjOne};
