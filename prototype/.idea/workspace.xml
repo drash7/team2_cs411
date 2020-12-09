@@ -21,7 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8d6a7fdd-6f07-40b0-8856-f2286c991ae3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Pages/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Pages/Home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/findUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/findUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +86,7 @@
       <workItem from="1606667150358" duration="691000" />
       <workItem from="1606925556186" duration="418000" />
       <workItem from="1607450488842" duration="1206000" />
-      <workItem from="1607497063817" duration="43000" />
+      <workItem from="1607497063817" duration="2471000" />
     </task>
     <servers />
   </component>
@@ -102,21 +106,41 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1374" height="200" key="GridCell.Tab.0.bottom" timestamp="1606652129167">
-      <screen x="0" y="25" width="1440" height="792" />
+    <state x="462" y="156" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607500953195">
+      <screen x="0" y="25" width="1440" height="794" />
+    </state>
+    <state x="462" y="156" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.794@0.25.1440.794" timestamp="1607500953195" />
+    <state width="1218" height="2" key="GridCell.Tab.0.bottom" timestamp="1607502990794">
+      <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1374" height="200" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1606652129167" />
-    <state width="1374" height="200" key="GridCell.Tab.0.center" timestamp="1606652129167">
-      <screen x="0" y="25" width="1440" height="792" />
+    <state width="1218" height="2" key="GridCell.Tab.0.bottom/0.25.1440.794@0.25.1440.794" timestamp="1607502990794" />
+    <state width="1218" height="2" key="GridCell.Tab.0.center" timestamp="1607502990793">
+      <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1374" height="200" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1606652129167" />
-    <state width="1374" height="200" key="GridCell.Tab.0.left" timestamp="1606652129166">
-      <screen x="0" y="25" width="1440" height="792" />
+    <state width="1218" height="2" key="GridCell.Tab.0.center/0.25.1440.794@0.25.1440.794" timestamp="1607502990793" />
+    <state width="1218" height="2" key="GridCell.Tab.0.left" timestamp="1607502990793">
+      <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1374" height="200" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1606652129166" />
-    <state width="1374" height="200" key="GridCell.Tab.0.right" timestamp="1606652129167">
-      <screen x="0" y="25" width="1440" height="792" />
+    <state width="1218" height="2" key="GridCell.Tab.0.left/0.25.1440.794@0.25.1440.794" timestamp="1607502990793" />
+    <state width="1218" height="2" key="GridCell.Tab.0.right" timestamp="1607502990793">
+      <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1374" height="200" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1606652129167" />
+    <state width="1218" height="2" key="GridCell.Tab.0.right/0.25.1440.794@0.25.1440.794" timestamp="1607502990793" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server/routes/findUser.js</url>
+          <line>56</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

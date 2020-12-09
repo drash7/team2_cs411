@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 import { addToDate } from '../Util/HelperFunc';
 import { clearStorage } from '../Util/Storage';
 
@@ -43,4 +43,4 @@ export const refreshToken = async (updateFunction) => {
 		.catch((err) => {
 			console.log(err);
 		});
-};
+}; */

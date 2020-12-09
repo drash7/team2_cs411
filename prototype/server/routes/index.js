@@ -31,7 +31,7 @@ router.route('/login')
 
 //redirect user to spotify login page
 router.route('/callback')
-    .get((req, res) => {
+    .get(async (req, res) => {
         const code = req.query.code || null;
 
         const authOptions = {
@@ -50,55 +50,79 @@ router.route('/callback')
 
 
         //Spotify API: retrieve data from Spotify API
-        request.post(authOptions, function(error, response, body) {
+        await request.post(authOptions, async function(error, response, body) {
 
             if (!error && response.statusCode === 200) {
-                const access_token = body.access_token;
+                // store access token here!
                 const build = {};
+                let access_token = body.access_token;
+                build.access_token = access_token;
 
-                // user profile information
+                // fetching user profile information
                 const options = {
                     url: 'https://api.spotify.com/v1/me',
-                    headers: { 'Authorization': 'Bearer ' + access_token },
-                    json: true
-                };
-
-                // spotify top artist information
-                const top_artist = {
-                    url: 'https://api.spotify.com/v1/me/top/artists',
-                    headers: { 'Authorization': 'Bearer ' + access_token },
+                    headers: {'Authorization': 'Bearer ' + access_token},
                     json: true
                 };
 
                 // storing the user profile information and generating UUID
-                request.get(options, async function(error, response, body) {
-                    let username = body.id;
+                await request.get(options, async function(error, response, body) {
+                    let username = await body.id;
                     let userInfo = await UUID.generateCode(username);
 
                     build.user = userInfo;          // internal generated uuid
                     build.spotify = body;           // spotify account data
+
+                    let storeData = await UUID.callDatabase(userInfo.uuid , build);
+
+                    res.redirect('http://localhost:3000/dashboard' + '?access_token=' + access_token);
+                    console.log(access_token);
+                    //res.send(build);
                 });
 
-                request.get(top_artist, async function(error, response, body) {
-                    build.top_artist = body;       // spotify top artist fetched
 
-                    /* IMPORTANT!!!
-                    Storing the User Account Info here.
-                    the key for finding this JSON data would be uuid of that USER
-                    uuid can be referenced in build.user.uui
-                     */
-                    let result = await UUID.storeUserInfo(build.user.uuid, build);
-                    //res.send(result);
-                    res.redirect('http://localhost:9000/artist' + '?access_token=' + access_token);
-                });
+
+                // // spotify top artist information
+                // const top_artist = {
+                //     url: 'https://api.spotify.com/v1/me/top/artists',
+                //     headers: {'Authorization': 'Bearer ' + access_token},
+                //     json: true
+                // };
+
+
+                // spotify top artist fetched
+                // await request.get(top_artist, async function(error, response, body) {
+                //     //here
+                //     let uuid = await build.user.uuid;
+                //
+                //     build.top_artist = await body;
+                //     let storeData = await UUID.callDatabase(uuid , build);
+                //     console.log(storeData);
+
+                    // res.render('middleware', {
+                    //     "user": build.user,
+                    //     "spotify": build.spotify,
+                    //     "result": build.top_artist,
+                    //     "token": build.access_token
+                    // });
+                // });
+
+                // res.send('/artist' + querystring.stringify(
+                //     {
+                //         access_token: access_token,
+                //         //refresh_token: refresh_token
+                //     }));
 
 
             // No access granted
             } else {
+                //res.send(errors)
                 res.redirect('/#' + querystring.stringify({error: 'invalid_token'}));
             }
         });
     })
+
+
 
 
 module.exports = router;

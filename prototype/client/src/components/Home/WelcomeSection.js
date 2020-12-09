@@ -15,12 +15,12 @@ import {
 
 const WelcomeSection = ( { primary, lightBg, imgStart, lightTopLine, lightTextDesc, 
     lightText, topLine, description, headline, imgBackground, img, start, alt, buttonLabel} ) => {
-        const {
+        /*const {
             REACT_APP_CLIENT_ID,
             REACT_APP_AUTHORIZE_URL,
             REACT_APP_REDIRECT_URL
           } = process.env;
-          const redirect='http://localhost:3000/redirect'
+          const redirect='http://localhost:3000/redirect'*/
     return (
         <WelcomeSec imgUrl={process.env.PUBLIC_URL + imgBackground} lightBg={lightBg}>
             <Container>
@@ -37,15 +37,15 @@ const WelcomeSection = ( { primary, lightBg, imgStart, lightTopLine, lightTextDe
                                 {description}
                             </Subtitle>
                         </TextWrapper>
-                        {/* <Link to='/dashboard'> */}
+                        {<Link to='/dashboard'> 
                             <Button big fontBig primary={primary} onClick={()=>{
-                                console.log(REACT_APP_REDIRECT_URL);
-                                window.location= `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${redirect}&response_type=token&show_dialog=true`
+                              /*  console.log(REACT_APP_REDIRECT_URL);
+                                window.location= `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${redirect}&response_type=token&show_dialog=true`*/
                                 // interface url?
                             }}>
                                 {buttonLabel}
                             </Button>
-                        {/* </Link> */}
+                        </Link> }
                     </WelcomeColumn>
                     <WelcomeColumn>
                         <ImgWrapper  start={start}>

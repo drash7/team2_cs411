@@ -10,6 +10,12 @@ const fetch = require('node-fetch')
 testData = require("../test-data/dummy_spotify_data.json");
 const CONFIG = require("../CONFIG/fetchConfigs");
 
+
+const index = require('./index');
+let uuid = index.userID;
+console.log(uuid);
+
+
 const elisson = testData.elisson.items;
 const rafael = testData.rafael.items;
 const userNames = {
@@ -35,6 +41,14 @@ router.route('/')
             const data = await formatGraphData(elisson, rafael, userNames)
             const graph = data[0], allArtistsNames = data[1];
             res.send(graph);
+
+            // res.send('/#adress' + querystring.stringify(
+            //     {
+            //         access_token: access_token,
+            //         //refresh_token: refresh_token
+            //     }));
+
+
         });
     })
 
