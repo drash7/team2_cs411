@@ -5,16 +5,16 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 
-const Home = (props) => {
-
-  function handleLogin() {
+function handleLogin() {
     window.location = 'http://localhost:9000/login';
   };
+
+const Home = (props) => {
 
   return (
     <div className="login">
       <WelcomeSection {...homeObjOne} />
-      <Button variant="info" type="submit" onClick={handleLogin()}>Login to spotify</Button>
+      <Button variant="info" type="submit" onClick={handleLogin}>Login to spotify</Button>
     </div>
   );
 };
