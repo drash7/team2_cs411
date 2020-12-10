@@ -14,7 +14,7 @@ const redirect_uri = CONFIG.fetchOptions.url;
 /* OAuth for Spotify API
    triggered from front end - log in with spotify  */
 
-const scope = 'user-top-read user-read-private user-read-email';
+const scope = 'user-top-read user-read-private user-read-email playlist-modify-public';
 
 router.route('/login')
     .get((req, res) => {

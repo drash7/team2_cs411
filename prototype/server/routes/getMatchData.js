@@ -7,6 +7,9 @@ const router = express.Router();
 const request = require('request')
 const fetch = require('node-fetch')
 
+const fetchHelpers = require('./utilities/fetchHelpers')
+const fetch_retry = fetchHelpers.fetch_retry;
+
 testData = require("../test-data/dummy_spotify_data.json");
 const CONFIG = require("../CONFIG/fetchConfigs");
 
@@ -53,28 +56,6 @@ router.route('/')
 
         });
     })
-
-// Used to wait in case we need to retry
-async function wait(ms) {
-    return new Promise(resolve => {
-        setTimeout(resolve, ms);
-    });
-}
-
-// Mechanism to retry calling the API in case we reach the rate limit
-async function fetch_retry(options, queryString, retries) {
-    let response = await fetch(queryString, options);
-    if (response.status == 429) {
-        if (retries > 0) {
-            await wait(response.headers.get("retry-after") * 1000).then(console.log("retrying"));
-            return await fetch_retry(options, queryString, retries-1);
-        } else {
-            return [];
-        }
-    } else {
-        return response
-    }
-}
 
 // Returns a list of 6 new artists to check out using TasteDive API and Spotify for Artist Profile Info
 async function getRecommendedArtistsTasteDive(artists) {
