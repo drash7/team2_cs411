@@ -54,7 +54,7 @@ async function createPlaylist(user1Songs, user2Songs, accessToken, usernames, us
     
     return {
         url: playlistInfo.external_urls.spotify,
-        uri: 'spotify:playlist:1G9a7AQuB1EzXmsZ4UY0Uq'
+        uri: playlistInfo.uri
     }
 }
 
