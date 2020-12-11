@@ -37,15 +37,16 @@ const WelcomeSection = ( { primary, lightBg, imgStart, lightTopLine, lightTextDe
                                 {description}
                             </Subtitle>
                         </TextWrapper>
-                        {<Link to='/dashboard'> 
+                        {/* {<Link to='/dashboard'>  */}
                             <Button big fontBig primary={primary} onClick={()=>{
                               /*  console.log(REACT_APP_REDIRECT_URL);
                                 window.location= `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${redirect}&response_type=token&show_dialog=true`*/
                                 // interface url?
+                                window.location = 'http://localhost:9000/login';
                             }}>
                                 {buttonLabel}
                             </Button>
-                        </Link> }
+                        {/* </Link> } */}
                     </WelcomeColumn>
                     <WelcomeColumn>
                         <ImgWrapper  start={start}>

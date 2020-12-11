@@ -14,15 +14,14 @@ const accountObjOne = {
     lightTopLine: true, 
     lightTextDesc: true, 
     lightText: true, 
-    topLine: 'Hi #username# ·', 
-    description1: `user ID:`,
-    description2: `email:`,
-    description3: `country:`,
+    topLine: 'Hi #'+window.username+'# ·', 
+    description1: `user ID:`+window.userId,
+    description2: `email:`+window.email,
+    description3: `country:`+window.country,
     img: require('../../assets/images/MusicBridgeLogo.png'), 
     start: '',
     alt: 'SomeImage'
 };
-
 
 
 

@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import { Header, DashboardSection } from '../../components'
 import { dashboardObjOne } from './Data';
+import qs from 'querystring'
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {apiResponse: ""};
+    const user = qs.parse(window.location.search);
+    console.log(user);
+    window.username = user.username;
+    window.userId = user.userId;
+    window.email = user.email;
+    window.country = user.country;
     }
-
     callAPI() {
         fetch("http://localhost:9000/callback")
             .then(res => res.text())
@@ -20,6 +26,7 @@ class Dashboard extends Component {
     }
 
     render() {
+
         return (
             <>
                 <Header/>

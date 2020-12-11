@@ -14,7 +14,7 @@ const Home = (props) => {
   return (
     <div className="login">
       <WelcomeSection {...homeObjOne} />
-      <Button variant="info" type="submit" onClick={handleLogin}>Login to spotify</Button>
+      {/* <Button variant="info" type="submit" onClick={handleLogin}>Login to spotify</Button> */}
     </div>
   );
 };

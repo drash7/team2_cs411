@@ -8,7 +8,6 @@ import Bridges from "./Pages/Bridges"
 import About from "./Pages/About/About"
 import ScrollToTop from "./components/ScrollToTop"
 import Account from "./Pages/Account/Account"
-import RequestPending from "./Pages/RequestPending/RequestPending"
 
 class App extends Component {
   render() {
@@ -23,7 +22,6 @@ class App extends Component {
             <Route path="/bridges" exact component={Bridges}/>
             <Route path="/about" exact component={About}/>
             <Route path="/account" exact component={Account}/>
-            <Route path="/requestpending" exact component={RequestPending}/>
           </Switch>
       </Router>
     );

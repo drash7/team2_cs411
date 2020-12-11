@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Button } from '../../globalStyles'
-import { Link } from 'react-router-dom';
 import { 
     DashboardSec, 
     DashboardRow,
@@ -24,9 +23,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         
                         <FormWrapper>
                             <FormInput type='text' required />
-                            <Link to = '/requestpending'>
-                                <FormButton type='submit'>Connect</FormButton>
-                            </Link>
+                            <FormButton type='submit'>Connect</FormButton>
                         </FormWrapper>
 
                         <ButtonWrapper>
