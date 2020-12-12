@@ -50,7 +50,7 @@ router.route('/callback')
 
 
         //Spotify API: retrieve data from Spotify API
-        await request.post(authOptions, async function(error, response, body) {
+        await request.post(authOptions, async function (error, response, body) {
 
             if (!error && response.statusCode === 200) {
                 // store access token here!
@@ -61,21 +61,22 @@ router.route('/callback')
                 // fetching user profile information
                 const options = {
                     url: 'https://api.spotify.com/v1/me',
-                    headers: {'Authorization': 'Bearer ' + access_token},
+                    headers: { 'Authorization': 'Bearer ' + access_token },
                     json: true
                 };
 
                 // storing the user profile information and generating UUID
-                await request.get(options, async function(error, response, body) {
+                await request.get(options, async function (error, response, body) {
                     let username = await body.id;
                     let userInfo = await UUID.generateCode(username);
 
                     build.user = userInfo;          // internal generated uuid
                     build.spotify = body;           // spotify account data
 
-                    let storeData = await UUID.callDatabase(userInfo.uuid , build);
+                    let storeData = await UUID.callDatabase(userInfo.uuid, build);
 
-                    res.redirect('http://localhost:3000/dashboard' + '?access_token=' + access_token);
+                    const { country, email, id: userId, display_name } = body;
+                    res.redirect('http://localhost:3000/dashboard?' + querystring.stringify({ access_token, username: display_name, userId, country, email }));
                     console.log(access_token);
                     //res.send(build);
                 });
@@ -99,12 +100,12 @@ router.route('/callback')
                 //     let storeData = await UUID.callDatabase(uuid , build);
                 //     console.log(storeData);
 
-                    // res.render('middleware', {
-                    //     "user": build.user,
-                    //     "spotify": build.spotify,
-                    //     "result": build.top_artist,
-                    //     "token": build.access_token
-                    // });
+                // res.render('middleware', {
+                //     "user": build.user,
+                //     "spotify": build.spotify,
+                //     "result": build.top_artist,
+                //     "token": build.access_token
+                // });
                 // });
 
                 // res.send('/artist' + querystring.stringify(
@@ -114,10 +115,10 @@ router.route('/callback')
                 //     }));
 
 
-            // No access granted
+                // No access granted
             } else {
                 //res.send(errors)
-                res.redirect('/#' + querystring.stringify({error: 'invalid_token'}));
+                res.redirect('/#' + querystring.stringify({ error: 'invalid_token' }));
             }
         });
     })
