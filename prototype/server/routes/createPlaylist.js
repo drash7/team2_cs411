@@ -1,4 +1,45 @@
 const fetch = require('node-fetch');
+const express = require('express');
+const router = express.Router();
+const DB = require('./redisDatabase')
+
+let accessToken; // assigned by the route
+
+// Spotify API: get top artists and track of user
+router.route('/')
+    .get(async (req, res) => {
+        // Get access token
+        accessToken = req.query.access_token;
+        const username = req.query.username;
+
+        // Get user1's uuid
+        const user = await DB.generateCode(username);
+        const uuid1 = user.uuid;
+        // Get user2's uuid
+        const uuid2 = req.query.uuid2;
+
+        // Get User info + data
+        const user1Data = await DB.callDatabase(uuid1);
+        const user2Data = await DB.callDatabase(uuid2);
+
+        // Holds both Users' Names
+        const users = {
+            user1: user1Data.spotify.display_name,
+            user2: user2Data.spotify.display_name
+        }
+
+        const spotify_id = user1Data.spotify.id
+
+        // Top Tracks
+        const user1TopTracks = user1Data.top_tracks;
+        const user2TopTracks = user2Data.top_tracks;
+
+        // Graph + recommendations
+        const data = await createPlaylist(user1TopTracks, user2TopTracks, users, spotify_id)
+
+        // Send Data to frontend
+        res.send(data);
+    })
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
@@ -11,7 +52,7 @@ function shuffle(array) {
 }
 
 // Takes in top songs for both artists, the access token, the names of both users as as json, and the user id to save
-async function createPlaylist(user1Songs, user2Songs, accessToken, usernames, user_id) {
+async function createPlaylist(user1Songs, user2Songs, usernames, user_id) {
 
     const user1SongsURIs = user1Songs.map(song => song.uri);
     const user2SongsURIs = user2Songs.map(song => song.uri);
@@ -58,4 +99,4 @@ async function createPlaylist(user1Songs, user2Songs, accessToken, usernames, us
     }
 }
 
-module.exports = createPlaylist;
+module.exports = router;
