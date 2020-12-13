@@ -71,7 +71,7 @@ router.route('/')
 // Returns a list of 6 new artists to check out using TasteDive API and Spotify for Artist Profile Info
 async function getRecommendedArtistsTasteDive(artists) {
 
-    // Make call to TasteDivem API
+    // Make call to TasteDive API
     const params = new URLSearchParams({
         q: artists.join(","),
         limit: 6,
