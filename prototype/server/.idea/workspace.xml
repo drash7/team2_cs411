@@ -20,10 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/getMatchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/getMatchData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/DashboardSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/DashboardSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/MatchingPage/Matching.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/MatchingPage/Matching.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +107,10 @@
       <workItem from="1607276234115" duration="7654000" />
       <workItem from="1607442776178" duration="1899000" />
       <workItem from="1607452023214" duration="93000" />
+      <workItem from="1607788647159" duration="230000" />
+      <workItem from="1607789228150" duration="1669000" />
+      <workItem from="1607793462121" duration="538000" />
+      <workItem from="1607865850929" duration="1226000" />
     </task>
     <servers />
   </component>
@@ -138,26 +144,26 @@
     </state>
     <state x="574" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.792@0.25.1440.792" timestamp="1606054169443" />
     <state x="574" y="265" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1440.794@0.25.1440.794" timestamp="1607282211177" />
-    <state width="1337" height="116" key="GridCell.Tab.0.bottom" timestamp="1607452115934">
+    <state width="1337" height="215" key="GridCell.Tab.0.bottom" timestamp="1607794000754">
       <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1419" height="414" key="GridCell.Tab.0.bottom/0.25.1440.792@0.25.1440.792" timestamp="1607276494561" />
-    <state width="1337" height="116" key="GridCell.Tab.0.bottom/0.25.1440.794@0.25.1440.794" timestamp="1607452115934" />
-    <state width="1337" height="116" key="GridCell.Tab.0.center" timestamp="1607452115932">
+    <state width="1337" height="215" key="GridCell.Tab.0.bottom/0.25.1440.794@0.25.1440.794" timestamp="1607794000754" />
+    <state width="1337" height="215" key="GridCell.Tab.0.center" timestamp="1607794000753">
       <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1419" height="414" key="GridCell.Tab.0.center/0.25.1440.792@0.25.1440.792" timestamp="1607276494560" />
-    <state width="1337" height="116" key="GridCell.Tab.0.center/0.25.1440.794@0.25.1440.794" timestamp="1607452115932" />
-    <state width="1337" height="116" key="GridCell.Tab.0.left" timestamp="1607452115932">
+    <state width="1337" height="215" key="GridCell.Tab.0.center/0.25.1440.794@0.25.1440.794" timestamp="1607794000753" />
+    <state width="1337" height="215" key="GridCell.Tab.0.left" timestamp="1607794000753">
       <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1419" height="414" key="GridCell.Tab.0.left/0.25.1440.792@0.25.1440.792" timestamp="1607276494559" />
-    <state width="1337" height="116" key="GridCell.Tab.0.left/0.25.1440.794@0.25.1440.794" timestamp="1607452115932" />
-    <state width="1337" height="116" key="GridCell.Tab.0.right" timestamp="1607452115933">
+    <state width="1337" height="215" key="GridCell.Tab.0.left/0.25.1440.794@0.25.1440.794" timestamp="1607794000753" />
+    <state width="1337" height="215" key="GridCell.Tab.0.right" timestamp="1607794000753">
       <screen x="0" y="25" width="1440" height="794" />
     </state>
     <state width="1419" height="414" key="GridCell.Tab.0.right/0.25.1440.792@0.25.1440.792" timestamp="1607276494560" />
-    <state width="1337" height="116" key="GridCell.Tab.0.right/0.25.1440.794@0.25.1440.794" timestamp="1607452115933" />
+    <state width="1337" height="215" key="GridCell.Tab.0.right/0.25.1440.794@0.25.1440.794" timestamp="1607794000753" />
     <state width="1204" height="24" key="GridCell.Tab.1.bottom" timestamp="1606073151853">
       <screen x="0" y="25" width="1440" height="792" />
     </state>
@@ -214,16 +220,5 @@
       <screen x="0" y="25" width="1440" height="792" />
     </state>
     <state x="801" y="141" width="670" height="676" key="search.everywhere.popup/0.25.1440.792@0.25.1440.792" timestamp="1606726613641" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/redisDatabase.js</url>
-          <line>67</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

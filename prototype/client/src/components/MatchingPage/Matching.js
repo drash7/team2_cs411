@@ -22,7 +22,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         <topLine lightTopLine={lightTopLine}> { topLine } </topLine>
                         
                         <FormWrapper>
-                            <FormInput type='text' required />
+                            <FormInput  type='text' required onClick={()=>{ }} />
                             <FormButton type='submit'>Connect</FormButton>
                         </FormWrapper>
 
