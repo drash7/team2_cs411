@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Button } from '../../globalStyles'
 import { Link } from 'react-router-dom';
-// import { Timer } from './Timer';
+import Timer from './Timer';
 import { 
     DashboardSec, 
     DashboardRow,
@@ -16,8 +16,8 @@ const LoadingSection = ( { primary, topLine, lightTopLine, buttonLabel, userCode
                 <Container>
                     <DashboardRow>
                         {/* <topLine lightTopLine={lightTopLine}> { topLine } </topLine> */}
+                        <Timer startCount='3'/>
                         <Heading lightText={lightText}> {headline} {friendsCode} </Heading>
-                        {/* <Timer /> */}
                         <Heading lightText={lightText}> {bottomText} </Heading>
                     </DashboardRow>
 
