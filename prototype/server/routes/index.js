@@ -51,7 +51,6 @@ router.route('/callback')
 
         //Spotify API: retrieve data from Spotify API
         await request.post(authOptions, async function (error, response, body) {
-
             if (!error && response.statusCode === 200) {
                 // store access token here!
                 const build = {};
@@ -77,7 +76,7 @@ router.route('/callback')
 
                     const { country, email, id: userId, display_name } = body;
                     res.redirect('http://localhost:3000/dashboard?' + querystring.stringify({ access_token, username: display_name, userId, country, email }));
-                    console.log(access_token);
+
                     //res.send(build);
                 });
 

@@ -13,7 +13,7 @@ async function fetch_retry(queryString, options, retries) {
     if (response.status == 429) {
         if (retries > 0) {
             await wait(response.headers.get("retry-after") * 1000).then(console.log("retrying"));
-            return await fetch_retry(options, queryString, retries - 1);
+            return await fetch_retry(queryString, options, retries - 1);
         } else {
             return [];
         }

@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 const request = require('request')
 const fetch = require('node-fetch')
+const DB = require('./redisDatabase')
 
 const fetchHelpers = require('./utilities/fetchHelpers')
 const fetch_retry = fetchHelpers.fetch_retry;
@@ -15,9 +16,6 @@ const CONFIG = require("../CONFIG/fetchConfigs");
 
 
 const index = require('./index');
-let uuid = index.userID;
-console.log(uuid);
-
 
 const elisson = testData.elisson.items;
 const rafael = testData.rafael.items;
@@ -30,7 +28,12 @@ let accessToken; // assigned by the route
 // Spotify API: get top artists and track of user
 router.route('/')
     .get(async (req, res) => {
-        accessToken = req.query.access_token
+        accessToken = req.query.access_token;
+        const username = req.query.username;
+
+        const user = await DB.generateCode(username);
+        const uuid1 = user.uuid;
+        const uuid2 = req.query.uuid2;
 
         const options = {
             url: 'https://api.spotify.com/v1/me/top/artists',
@@ -41,11 +44,19 @@ router.route('/')
         };
 
         request.get(options,  async function(error, response, body) {
-            const data = await formatGraphData(elisson, rafael, userNames)
-            const graph = data[0], allArtistsNames = data[1];
-            const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
-            console.log(recommendations);
-            res.send(graph);
+            // Frontend sends us user ids
+
+            // SIMPLY GET STUFF FROM REDIS using ids returned by front
+            // FROM FRONTED:
+            // - usr-id-2, - access token
+            const user1Data = await DB.callDatabase(uuid1);
+            const user2Data = await DB.callDatabase(uuid2);
+
+            // const data = await formatGraphData(elisson, rafael, userNames)
+            // const graph = data[0], allArtistsNames = data[1];
+            // const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
+            // console.log(graph);
+            res.send({ user1Data, user2Data });
 
             // res.send('/#adress' + querystring.stringify(
             //     {
@@ -93,7 +104,7 @@ async function getRecommendedArtistsTasteDive(artists) {
             });
 
             const queryString = 'https://api.spotify.com/v1/search?' + params;
-            const response1 = await fetch_retry(options, queryString, 10);
+            const response1 = await fetch_retry(queryString, options, 10);
             const data1 = await response1.json();
             
             const artistInfo = data1.artists.items[0];
@@ -124,7 +135,7 @@ async function getRelatedArtistsSpotify(artists) {
     await Promise.all( 
         artists.map(async artist => {
             const queryString = `https://api.spotify.com/v1/artists/${artist.id}/related-artists`;
-            const response = await fetch_retry(options, queryString, 10);
+            const response = await fetch_retry(queryString, options, 10);
             const data = await response.json();
             result[artist.name] = data.artists.map(a => a.name);
         })

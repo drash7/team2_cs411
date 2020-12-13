@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const fetchHelpers = require('./utilities/fetchHelpers')
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
@@ -11,6 +10,7 @@ function shuffle(array) {
     }
 }
 
+// Takes in top songs for both artists, the access token, the names of both users as as json, and the user id to save
 async function createPlaylist(user1Songs, user2Songs, accessToken, usernames, user_id) {
 
     const user1SongsURIs = user1Songs.map(song => song.uri);
