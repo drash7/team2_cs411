@@ -3,6 +3,7 @@ const router = express.Router();
 
 const querystring = require('querystring');
 const request = require('request')
+const fetch = require('node-fetch')
 const CONFIG = require('../config/fetchConfigs');
 const UUID = require('./redisDatabase');
 
@@ -50,7 +51,7 @@ router.route('/callback')
 
 
         //Spotify API: retrieve data from Spotify API
-        await request.post(authOptions, async function (error, response, body) {
+        request.post(authOptions, async function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 // store access token here!
                 const build = {};
@@ -65,47 +66,49 @@ router.route('/callback')
                 };
 
                 // storing the user profile information and generating UUID
-                await request.get(options, async function (error, response, body) {
+                request.get(options, async function (error, response, body) {
                     let username = await body.id;
                     let userInfo = await UUID.generateCode(username);
 
                     build.user = userInfo;          // internal generated uuid
                     build.spotify = body;           // spotify account data
 
+
+                    const top_artists_url = 'https://api.spotify.com/v1/me/top/artists?limit=50';
+                    const top_tracks_url = 'https://api.spotify.com/v1/me/top/tracks?limit=25';                    
+
+                    const top_options = {
+                        headers: { 'Authorization': 'Bearer ' + access_token },
+                        json: true
+                    };
+
+                    // spotify top artist fetched
+                    // request.get(top_artist, async function (error, response, body) {
+                    //     const data = await body;
+                    //     build.top_artist = data.items;
+                    // });
+                    const top_artists_response = await fetch(top_artists_url, options);
+                    const top_artists_data = await top_artists_response.json();
+                    build.top_artists = top_artists_data.items;
+
+                    // spotify top tracks fetched
+                    // request.get(top_tracks, async function (error, response, body) {
+                    //     const data = await body;
+                    //     build.top_tracks = data.items;
+                    //     console.log(build);
+                    // });
+                    const top_tracks_response = await fetch(top_tracks_url, options);
+                    const top_tracks_data = await top_tracks_response.json();
+                    build.top_tracks = top_tracks_data.items;
+
                     let storeData = await UUID.callDatabase(userInfo.uuid, build);
+                    console.log(storeData.user);
 
                     const { country, email, id: userId, display_name } = body;
                     res.redirect('http://localhost:3000/dashboard?' + querystring.stringify({ access_token, username: display_name, userId, country, email }));
 
                     //res.send(build);
                 });
-
-
-
-                // // spotify top artist information
-                // const top_artist = {
-                //     url: 'https://api.spotify.com/v1/me/top/artists',
-                //     headers: {'Authorization': 'Bearer ' + access_token},
-                //     json: true
-                // };
-
-
-                // spotify top artist fetched
-                // await request.get(top_artist, async function(error, response, body) {
-                //     //here
-                //     let uuid = await build.user.uuid;
-                //
-                //     build.top_artist = await body;
-                //     let storeData = await UUID.callDatabase(uuid , build);
-                //     console.log(storeData);
-
-                // res.render('middleware', {
-                //     "user": build.user,
-                //     "spotify": build.spotify,
-                //     "result": build.top_artist,
-                //     "token": build.access_token
-                // });
-                // });
 
                 // res.send('/artist' + querystring.stringify(
                 //     {

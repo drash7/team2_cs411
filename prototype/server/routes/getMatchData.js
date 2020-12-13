@@ -11,61 +11,45 @@ const DB = require('./redisDatabase')
 const fetchHelpers = require('./utilities/fetchHelpers')
 const fetch_retry = fetchHelpers.fetch_retry;
 
-testData = require("../test-data/dummy_spotify_data.json");
 const CONFIG = require("../CONFIG/fetchConfigs");
 
 
-const index = require('./index');
-
-const elisson = testData.elisson.items;
-const rafael = testData.rafael.items;
-const userNames = {
-    user1: "elisson",
-    user2: "rafael"
-}
 let accessToken; // assigned by the route
 
 // Spotify API: get top artists and track of user
 router.route('/')
     .get(async (req, res) => {
+        // Get access token
         accessToken = req.query.access_token;
         const username = req.query.username;
 
+        // Get user1's uuid
         const user = await DB.generateCode(username);
         const uuid1 = user.uuid;
+        // Get user2's uuid
         const uuid2 = req.query.uuid2;
 
-        const options = {
-            url: 'https://api.spotify.com/v1/me/top/artists',
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
-            },
-            json: true
-        };
+        // Get User info + data
+        const user1Data = await DB.callDatabase(uuid1);
+        const user2Data = await DB.callDatabase(uuid2);
 
-        request.get(options,  async function(error, response, body) {
-            // Frontend sends us user ids
+        // Holds both Users' Names
+        const users = {
+            user1: user1Data.spotify.display_name,
+            user2: user2Data.spotify.display_name
+        }
 
-            // SIMPLY GET STUFF FROM REDIS using ids returned by front
-            // FROM FRONTED:
-            // - usr-id-2, - access token
-            const user1Data = await DB.callDatabase(uuid1);
-            const user2Data = await DB.callDatabase(uuid2);
+        // Top Artists
+        const user1TopArtists = user1Data.top_artists;
+        const user2TopArtists = user2Data.top_artists;
 
-            // const data = await formatGraphData(elisson, rafael, userNames)
-            // const graph = data[0], allArtistsNames = data[1];
-            // const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
-            // console.log(graph);
-            res.send({ user1Data, user2Data });
+        // Graph + recommendations
+        const data = await formatGraphData(user1TopArtists, user2TopArtists, users)
+        const graph = data[0], allArtistsNames = data[1];
+        const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
 
-            // res.send('/#adress' + querystring.stringify(
-            //     {
-            //         access_token: access_token,
-            //         //refresh_token: refresh_token
-            //     }));
-
-
-        });
+        // Send Data to frontend
+        res.send({ graph, recommendations, users});
     })
 
 // Returns a list of 6 new artists to check out using TasteDive API and Spotify for Artist Profile Info
@@ -163,7 +147,6 @@ async function formatGraphData(user1Data, user2Data, userNames) {
     const user2ArtistsIdAndNames = user2Data.map(g => { return { id: g.id, name: g.name } });
     const allArtistsNames = [... new Set([...user1ArtistsNames, ...user2ArtistsNames])];
     const allArtistsIdAndNames = [... new Set([...user1ArtistsIdAndNames, ...user2ArtistsIdAndNames])];
-
     let artistAssociations = await getRelatedArtistsSpotify(allArtistsIdAndNames);
 
     nodes = [];
@@ -188,7 +171,7 @@ async function formatGraphData(user1Data, user2Data, userNames) {
     // Parse through user 2 top artists
     user2Data.forEach(artist => {
         let assoc = artistAssociations[artist.name].filter(a => allArtistsNames.includes(a));
-        if (!user2ArtistsNames.includes(artist.name)) {
+        if (!user1ArtistsNames.includes(artist.name)) {
             nodes.push(
                 {
                     id: artist.name,
