@@ -24,7 +24,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         
                         <FormWrapper>
                             <FormInput type='text' required />
-                            <FormButton type='submit'>Connect</FormButton>
+                            
                             <Link to = '/loading'>
                                 <FormButton type='submit'>Connect</FormButton>
                             </Link>
