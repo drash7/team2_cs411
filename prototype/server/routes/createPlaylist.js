@@ -62,8 +62,8 @@ async function createPlaylist(user1Songs, user2Songs, usernames, user_id) {
     let options = {
         method: 'POST',
         body: JSON.stringify({
-            name: `${usernames.user1} and ${usernames.user2}'s Music Bridge Playlist`,
-            description: "Done thanks to MusicBridge",
+            name: `${usernames.user1} and ${usernames.user2}'s MusicBridge Playlist`,
+            description: "Done using MusicBridge",
             public: "True"
         }),
         headers: {
