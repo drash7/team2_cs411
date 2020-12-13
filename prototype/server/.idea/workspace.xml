@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Dashboard/DashboardSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Dashboard/DashboardSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/MatchingPage/Matching.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/MatchingPage/Matching.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="f83f9db3-010d-4832-b94c-801a16ad58e3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +103,7 @@
       <workItem from="1607788647159" duration="230000" />
       <workItem from="1607789228150" duration="1669000" />
       <workItem from="1607793462121" duration="538000" />
-      <workItem from="1607865850929" duration="1226000" />
+      <workItem from="1607865850929" duration="1319000" />
     </task>
     <servers />
   </component>
