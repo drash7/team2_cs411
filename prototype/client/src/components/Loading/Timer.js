@@ -4,7 +4,7 @@ import CircleLoader from './loadingAnimation';
 
 function Grid({ children }) {
     return (
-        <div classname="grid">
+        <div className="grid">
             <LoadingBox>{children}</LoadingBox>
         </div>
     );
@@ -12,21 +12,26 @@ function Grid({ children }) {
 
 function LoadingBox({ children })   {
     return React.Children.map(children, child => {
-        return <div classname="loading-box">{child}</div>
+        return <div className="loading-box">{child}</div>
     })
 }
+
+function handleRedirect()   {
+    // window.location.replace('https://www.google.com');
+    window.location.replace('http://localhost:3000');
+};
 
 class Timer extends Component   {
     constructor(props)  {
         super(props)
         this.state = {
-            count: 0
+            count: 3
         }
     }
     render()    {
-        const {count} = this.state
+        const {count} = this.state.count
         if (this.state.count === 0)    {
-            window.location.replace('localhost:3000/graph');
+            handleRedirect();
         }
         return (
             <div>
