@@ -3,10 +3,12 @@ import { Header, DashboardSection } from '../../components'
 import { dashboardObjOne } from './Data';
 import qs from 'querystring'
 
+
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {apiResponse: ""};
+
     const user = qs.parse(window.location.search);
     console.log(user);
     window.username = user.username;
@@ -31,6 +33,8 @@ class Dashboard extends Component {
             <>
                 <Header/>
                 <DashboardSection {...dashboardObjOne}/>
+               
+              
             </>
 
         );

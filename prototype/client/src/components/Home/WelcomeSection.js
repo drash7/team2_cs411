@@ -13,6 +13,7 @@ import {
     Img
 } from './WelcomeSection.elements'
 
+
 const WelcomeSection = ( { primary, lightBg, imgStart, lightTopLine, lightTextDesc, 
     lightText, topLine, description, headline, imgBackground, img, start, alt, buttonLabel} ) => {
         /*const {

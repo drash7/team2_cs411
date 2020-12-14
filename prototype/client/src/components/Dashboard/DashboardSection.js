@@ -12,6 +12,9 @@ import {
     Line,
     FormWrapper
 } from './DashboardSection.elements'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import {  message } from 'antd';
+import qs from 'querystring'
 
 
 const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCode } ) => {
@@ -30,11 +33,17 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                             </Link>
                         </FormWrapper>
 
-                        <ButtonWrapper>
+                        
+                        <div>
+                        <CopyToClipboard text={window.userId} >      
+                        <span><ButtonWrapper>
                             <CodeButton big fontBig primary={primary}>
-                                { buttonLabel }
+                            {buttonLabel} 
                             </CodeButton>
-                        </ButtonWrapper>
+                        </ButtonWrapper></span>
+	                    </CopyToClipboard>
+                        </div>
+
                         <Text> { userCode } </Text>
                         <Line />
                     </DashboardRow>
