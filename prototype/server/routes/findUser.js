@@ -48,6 +48,7 @@ const findFriend = async uuid_input => {
 
         //console.log(cache_flag);
         //console.log(friend_result);
+        return(friend_result);
 
     } else {
         // User not Found, direct to error page

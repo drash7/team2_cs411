@@ -12,11 +12,11 @@ class Dashboard extends Component {
     const user = qs.parse(window.location.search);
     console.log(user);
     if(!user.username)return
-    window.username = user.username;
-    window.userId = user.userId;
+    window.displayName = user.username;
+    window.username = user.userId;
     window.email = user.email;
     window.country = user.country;
-    window.access_token=user.access_token;
+    window.access_token=user["?access_token"];
     window.UUID = user.UUID;
     }
     callAPI() {

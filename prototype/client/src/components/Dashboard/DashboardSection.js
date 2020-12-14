@@ -24,6 +24,9 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
             return;
         }
         fetch(`http://localhost:9000/bridge?uuid2=${uuid}&username=${window.username}&access_token=${window.access_token}`)
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => err);
     }
     return (
         <>

@@ -42,6 +42,8 @@ router.route('/')
         const user1Data = await DB.callDatabase(uuid1);
         const user2Data = await Friend.findFriend(uuid2);
 
+        console.log(user2Data);
+
         if (user2Data === "error") {
             console.log("User not found in Database");
             res.redirect("http://localhost:3000/notfound");
