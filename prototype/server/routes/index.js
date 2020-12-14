@@ -5,7 +5,7 @@ const querystring = require('querystring');
 const request = require('request')
 const fetch = require('node-fetch')
 const CONFIG = require('../config/fetchConfigs');
-const UUID = require('./redisDatabase');
+const DB = require('./redisDatabase');
 
 const client_id = CONFIG.fetchOptions.client_id;
 const client_secret = CONFIG.fetchOptions.client_secret;
@@ -68,7 +68,7 @@ router.route('/callback')
                 // storing the user profile information and generating UUID
                 request.get(options, async function (error, response, body) {
                     let username = await body.id;
-                    let userInfo = await UUID.generateCode(username);
+                    let userInfo = await DB.generateCode(username);
 
                     build.user = userInfo;          // internal generated uuid
                     build.spotify = body;           // spotify account data
@@ -101,12 +101,15 @@ router.route('/callback')
                     const top_tracks_data = await top_tracks_response.json();
                     build.top_tracks = top_tracks_data.items;
 
-                    let storeData = await UUID.callDatabase(userInfo.uuid, build);
+                    let storeData = await DB.callDatabase(userInfo.uuid, build);
                     console.log(storeData.user);
                     
 
                     const { country, email, id: userId, display_name} = body;
-                    res.redirect('http://localhost:3000/dashboard?' + querystring.stringify({ UUID, access_token, username: display_name, userId, country, email }));
+                    const q = {access_token, username: display_name, userId, country, email };
+                    q.UUID = userInfo.uuid;
+                    //  querystring.stringify({ UUID, access_token, username: display_name, userId, country, email }))
+                    res.redirect('http://localhost:3000/dashboard?' + querystring.stringify(q));
 
                     //res.send(build);
                 });
