@@ -39,6 +39,9 @@ let uuid_input = '96583f1e-3d1e-4ddd-ba59-0725935f71ae';
 router.get('/', async (req, res) => {
     // take uuid as an input through get or post request query from front-end
     console.log('uuid received');
+    uuid_input = req.query.uuid;
+    const access_token = req.query.access_token;
+    console.log(uuid_input,access_token);
 
     // const uuid = req.body.uuid;
     // check if uuid is valid and user exist in DB

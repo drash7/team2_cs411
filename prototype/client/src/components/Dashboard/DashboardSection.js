@@ -1,4 +1,4 @@
-import React from 'react'
+import Reactf,{useState} from 'react'
 import { Container, Button } from '../../globalStyles'
 import { Link } from 'react-router-dom';
 import { 
@@ -18,6 +18,13 @@ import qs from 'querystring'
 
 
 const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCode } ) => {
+    const [uuid,setUuid] = useState()
+    const doConnect = ()=>{
+        if(!uuid){
+            return;
+        }
+        fetch(`http://localhost:9000/invite?uuid=${uuid}&access_token=${window.access_token}`)
+    }
     return (
         <>
             <DashboardSec>
@@ -26,10 +33,10 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         <topLine lightTopLine={lightTopLine}> { topLine } </topLine>
                         
                         <FormWrapper>
-                            <FormInput type='text' required />
+                            <FormInput type='text' required value={uuid} onChange={e=>setUuid(e.target.value)}/>
                             
-                            <Link to = '/loading'>
-                                <FormButton type='submit'>Connect</FormButton>
+                            <Link to = '/loading' onClick={doConnect}>
+                                <FormButton >Connect</FormButton>
                             </Link>
                         </FormWrapper>
 
@@ -41,10 +48,10 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                             {buttonLabel} 
                             </CodeButton>
                         </ButtonWrapper></span>
-	                    </CopyToClipboard>
+                        </CopyToClipboard>
                         </div>
 
-                        <Text> { 'Your code: '+window.userId  } </Text>
+                        <Text> { 'Your code: '+window.UUID } </Text>
                         <Line />
                     </DashboardRow>
 

@@ -16,6 +16,7 @@ class Dashboard extends Component {
     window.userId = user.userId;
     window.email = user.email;
     window.country = user.country;
+    window.access_token=user.access_token;
     }
     callAPI() {
         fetch("http://localhost:9000/callback")

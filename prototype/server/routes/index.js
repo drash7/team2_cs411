@@ -103,9 +103,10 @@ router.route('/callback')
 
                     let storeData = await UUID.callDatabase(userInfo.uuid, build);
                     console.log(storeData.user);
+                    
 
-                    const { country, email, id: userId, display_name } = body;
-                    res.redirect('http://localhost:3000/dashboard?' + querystring.stringify({ access_token, username: display_name, userId, country, email }));
+                    const { country, email, id: userId, display_name} = body;
+                    res.redirect('http://localhost:3000/dashboard?' + querystring.stringify({ UUID, access_token, username: display_name, userId, country, email }));
 
                     //res.send(build);
                 });
