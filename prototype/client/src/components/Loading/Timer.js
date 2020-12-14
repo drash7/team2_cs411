@@ -1,4 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import CircleLoader from './loadingAnimation';
+
+function Grid({ children }) {
+    return (
+        <div classname="grid">
+            <LoadingBox>{children}</LoadingBox>
+        </div>
+    );
+}
+
+function LoadingBox({ children })   {
+    return React.Children.map(children, child => {
+        return <div classname="loading-box">{child}</div>
+    })
+}
 
 class Timer extends Component   {
     constructor(props)  {
@@ -9,9 +25,14 @@ class Timer extends Component   {
     }
     render()    {
         const {count} = this.state
+        if (this.state.count === 0)    {
+            window.location.replace('localhost:3000/graph');
+        }
         return (
             <div>
-                <h1>Loading: {count}</h1>
+                <Grid>
+                    <CircleLoader />
+                </Grid>
             </div>
         )
     }
@@ -25,6 +46,7 @@ class Timer extends Component   {
             this.setState(prevState => ({
                 count: prevState.count - 1
             }))
+            
         }, 1000)
         
     }

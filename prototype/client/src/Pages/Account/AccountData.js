@@ -14,7 +14,7 @@ const accountObjOne = {
     lightTopLine: true, 
     lightTextDesc: true, 
     lightText: true, 
-    topLine: 'Hi #'+window.username+'# ·', 
+    topLine: 'Hi '+window.username+'·', 
     description1: `user ID:`+window.userId,
     description2: `email:`+window.email,
     description3: `country:`+window.country,

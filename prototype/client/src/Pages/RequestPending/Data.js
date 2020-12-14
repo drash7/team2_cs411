@@ -1,11 +1,11 @@
 export const dashboardObjOne = {
     primary: true,
-    topLine: 'Find a bridge with a friend',
+    topLine: 'Create a bridge with a friend',
     lightTopLine: true, 
     buttonLabel: 'Copy your code', 
-    userCode: 'user code here',
+    userCode: 'User code here',
     lightText: true,
-    headline: 'invitation sent to',
+    headline: 'Invitation sent to',
     friendsCode: '####',
-    bottomText: 'waiting for friend to connect..'
+    bottomText: 'Waiting for friend to connect..'
 };
