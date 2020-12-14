@@ -71,7 +71,7 @@ class Graph extends Component {
             .range(colors.genreColors);
 
         // Color for all stroke related things
-        const stroke_color = "#171717";
+        const stroke_color = "#FFFFFF";
 
         // Force simulation treats nodes as "particles" with repelling and attracting forces
         const simulation = d3.forceSimulation(nodes)
