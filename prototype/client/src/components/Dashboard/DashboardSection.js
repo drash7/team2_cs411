@@ -44,7 +44,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
 	                    </CopyToClipboard>
                         </div>
 
-                        <Text> { userCode } </Text>
+                        <Text> { 'Your code: '+window.userId  } </Text>
                         <Line />
                     </DashboardRow>
 

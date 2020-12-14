@@ -11,6 +11,7 @@ class Dashboard extends Component {
 
     const user = qs.parse(window.location.search);
     console.log(user);
+    if(!user.username)return
     window.username = user.username;
     window.userId = user.userId;
     window.email = user.email;

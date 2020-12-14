@@ -3,5 +3,5 @@ export const dashboardObjOne = {
     topLine: 'Find a bridge with a friend',
     lightTopLine: true, 
     buttonLabel: 'Copy your code', 
-    userCode: 'Your code:'+window.userId 
+    userCode: 'Your code:'
 };
