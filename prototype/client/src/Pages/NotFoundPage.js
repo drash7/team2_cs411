@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 const NotFoundPage = () => {
   return (
     <React.Fragment>
@@ -9,4 +9,5 @@ const NotFoundPage = () => {
     </React.Fragment>
   );
 };
+
 export default NotFoundPage;

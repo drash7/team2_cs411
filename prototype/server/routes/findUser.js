@@ -33,39 +33,28 @@ client.on("error", function (error) {
 
 
 // take uuid as an input through get or post request query from front-end
-let uuid_input = '96583f1e-3d1e-4ddd-ba59-0725935f71ae';
 
+const findFriend = async uuid_input => {
 
-router.get('/', async (req, res) => {
-    // take uuid as an input through get or post request query from front-end
-    console.log('uuid received');
-    uuid_input = req.query.uuid;
-    const access_token = req.query.access_token;
-    console.log(uuid_input,access_token);
-
-    // const uuid = req.body.uuid;
-    // check if uuid is valid and user exist in DB
     let user_exist = await asyncExists(uuid_input);
     let uuid_valid = await uuidValidate(uuid_input);
 
     // account found in the cache, ready to be connected!
+
     if (uuid_valid && user_exist) {
         console.log("Your friend uuid is found");
-        const friend_result = await UUID.storeUserInfo(uuid_input, null);
+        const friend_result = await UUID.callDatabase(uuid_input, null);
         let cache_flag = await asyncGet(uuid_input);
-        console.log(cache_flag);
-        res.send(friend_result);
-        console.log(friend_result);
-    }
-    else {
+
+        //console.log(cache_flag);
+        //console.log(friend_result);
+
+    } else {
         // User not Found, direct to error page
-        res.send('Cannot find a user with provided User Code');
-        // throw alert to front or display msg
+        return("error");
+
     }
+}
 
 
-
-})
-
-
-module.exports = router;
+module.exports = {findFriend};

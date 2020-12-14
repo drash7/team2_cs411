@@ -63,7 +63,7 @@ const generateCode = async username => {
 
         // this is for testing purpose
         // change expiration time, one code per one user name?
-        await asyncExpire(username, 100000);
+        //await asyncExpire(username, 100000);
         return user
     }
 }

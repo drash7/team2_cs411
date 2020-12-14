@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch')
 const DB = require('./redisDatabase')
+const Friend = require('./findUser');
 
 const fetchHelpers = require('./utilities/fetchHelpers')
 const fetch_retry = fetchHelpers.fetch_retry;
@@ -19,6 +20,12 @@ let accessToken; // assigned by the route
 router.route('/')
     .get(async (req, res) => {
         // Get access token
+
+        // const uuid_input = req.query.uuid;
+        // const access_token = req.query.access_token;
+        // console.log(uuid_input,access_token);
+        // await Friend.findFriend(uuid_input);
+
         accessToken = req.query.access_token;
         const username = req.query.username;
 
@@ -28,27 +35,37 @@ router.route('/')
         // Get user2's uuid
         const uuid2 = req.query.uuid2;
 
+        console.log("Print testing for routing " + uuid2, username ,accessToken);
+
+
         // Get User info + data
         const user1Data = await DB.callDatabase(uuid1);
-        const user2Data = await DB.callDatabase(uuid2);
+        const user2Data = await Friend.findFriend(uuid2);
 
-        // Holds both Users' Names
-        const users = {
-            user1: user1Data.spotify.display_name,
-            user2: user2Data.spotify.display_name
+        if (user2Data === "error") {
+            console.log("User not found in Database");
+            res.redirect("http://localhost:3000/notfound");
+
+        } else {
+
+            // Holds both Users' Names
+            const users = {
+                user1: user1Data.spotify.display_name,
+                user2: user2Data.spotify.display_name
+            }
+
+            // Top Artists
+            const user1TopArtists = user1Data.top_artists;
+            const user2TopArtists = user2Data.top_artists;
+
+            // Graph + recommendations
+            const data = await formatGraphData(user1TopArtists, user2TopArtists, users)
+            const graph = data[0], allArtistsNames = data[1];
+            const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
+
+            // Send Data to frontend
+            res.send({graph, recommendations, users});
         }
-
-        // Top Artists
-        const user1TopArtists = user1Data.top_artists;
-        const user2TopArtists = user2Data.top_artists;
-
-        // Graph + recommendations
-        const data = await formatGraphData(user1TopArtists, user2TopArtists, users)
-        const graph = data[0], allArtistsNames = data[1];
-        const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
-
-        // Send Data to frontend
-        res.send({ graph, recommendations, users});
     })
 
 // Returns a list of 6 new artists to check out using TasteDive API and Spotify for Artist Profile Info

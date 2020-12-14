@@ -6,7 +6,7 @@ const logger = require('morgan');
 const cors = require("cors");
 
 const indexRouter = require('./routes/index');
-const findUser = require('./routes/findUser');
+//const findUser = require('./routes/findUser');
 const matchData = require('./routes/getMatchData');
 const createPlaylist = require('./routes/createPlaylist');
 
@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/invite', findUser);
+//app.use('/invite', findUser);
 app.use('/bridge', matchData);
 app.use('/playlist', createPlaylist);
 

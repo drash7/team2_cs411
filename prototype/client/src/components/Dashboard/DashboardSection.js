@@ -1,4 +1,4 @@
-import Reactf,{useState} from 'react'
+import React,{useState} from 'react'
 import { Container, Button } from '../../globalStyles'
 import { Link } from 'react-router-dom';
 import { 
@@ -23,7 +23,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
         if(!uuid){
             return;
         }
-        fetch(`http://localhost:9000/invite?uuid=${uuid}&access_token=${window.access_token}`)
+        fetch(`http://localhost:9000/bridge?uuid2=${uuid}&username=${window.username}&access_token=${window.access_token}`)
     }
     return (
         <>
