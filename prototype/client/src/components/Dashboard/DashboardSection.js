@@ -45,7 +45,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
 
                         
                         <div>
-                        <CopyToClipboard text={window.userId} >      
+                        <CopyToClipboard text={window.UUID} >      
                         <span><ButtonWrapper>
                             <CodeButton big fontBig primary={primary}>
                             {buttonLabel} 
