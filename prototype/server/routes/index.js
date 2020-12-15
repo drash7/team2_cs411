@@ -103,7 +103,7 @@ router.route('/callback')
 
                     let storeData = await DB.callDatabase(userInfo.uuid, build);
                     console.log(storeData.user);
-                    
+                    debugger
 
                     const { country, email, id: userId, display_name} = body;
                     const q = {access_token, username: display_name, userId, country, email };

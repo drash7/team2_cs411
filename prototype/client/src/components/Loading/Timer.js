@@ -18,7 +18,7 @@ function LoadingBox({ children })   {
 
 function handleRedirect()   {
     // window.location.replace('https://www.google.com');
-    window.location.replace('http://localhost:3000');
+    // window.location.replace('http://localhost:3000');
 };
 
 class Timer extends Component   {

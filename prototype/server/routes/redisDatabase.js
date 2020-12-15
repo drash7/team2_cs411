@@ -89,6 +89,8 @@ const callDatabase = async (uuid, data = {}) => {
         console.log("Store user data in redis database");
     }
     const result = await jsonCache.get(uuid)
+    console.log('res',result);
+    debugger
     return result;
 }
 
