@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import GlobalStyle from './globalStyles';
 
 import Home from "./Pages/Home/Home"
@@ -10,6 +10,9 @@ import ScrollToTop from "./components/ScrollToTop"
 import Account from "./Pages/Account/Account"
 import RequestPending from "./Pages/RequestPending/RequestPending";
 import NotFoundPage from "./Pages/NotFoundPage";
+import GraphPage from "./Pages/Graph/GraphPage";
+
+import GraphContextProvider from "./contexts/GraphContextProvider"
 
 class App extends Component {
   render() {
@@ -17,16 +20,19 @@ class App extends Component {
       <Router>
         <GlobalStyle />
         <ScrollToTop />
-          <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/dashboard" exact component={Dashboard}/>
-            <Route path="/redirect" exact component={Dashboard}/>
-            <Route path="/bridges" exact component={Bridges}/>
-            <Route path="/about" exact component={About}/>
-            <Route path="/account" exact component={Account}/>
-            <Route path="/loading" exact component={RequestPending}/>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <GraphContextProvider>
+            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/redirect" exact component={Dashboard} />
+            <Route path="/bridges" exact component={Bridges} />
+            <Route path="/about" exact component={About} />
+            <Route path="/account" exact component={Account} />
+            <Route path="/loading" exact component={RequestPending} />
             <Route path="/notfound" exact component={NotFoundPage} />
-          </Switch>
+            <Route path="/graph" exact component={GraphPage} />
+          </GraphContextProvider>
+        </Switch>
       </Router>
     );
   }

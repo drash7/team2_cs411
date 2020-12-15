@@ -9,16 +9,16 @@ class Dashboard extends Component {
         super(props);
         this.state = {apiResponse: ""};
 
-    const user = qs.parse(window.location.search);
-    console.log(user);
-    if(!user.username)return
-    window.displayName = user.username;
-    window.username = user.userId;
-    window.email = user.email;
-    window.country = user.country;
-    window.access_token=user["?access_token"];
-    window.UUID = user.UUID;
-    }
+        const user = qs.parse(window.location.search);
+        console.log(user);
+        if(!user.username)return
+        window.displayName = user.username;
+        window.username = user.userId;
+        window.email = user.email;
+        window.country = user.country;
+        window.access_token=user["?access_token"];
+        window.UUID = user.UUID;
+        }
     callAPI() {
         fetch("http://localhost:9000/callback")
             .then(res => res.text())

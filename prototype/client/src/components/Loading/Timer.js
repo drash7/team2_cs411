@@ -18,7 +18,7 @@ function LoadingBox({ children })   {
 
 function handleRedirect()   {
     // window.location.replace('https://www.google.com');
-    // window.location.replace('http://localhost:3000');
+    window.location.replace('http://localhost:3000/bridge');
 };
 
 class Timer extends Component   {
@@ -27,6 +27,7 @@ class Timer extends Component   {
         this.state = {
             count: 3
         }
+        console.log()
     }
     render()    {
         const {count} = this.state.count

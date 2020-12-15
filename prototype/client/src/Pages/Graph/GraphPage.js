@@ -8,8 +8,8 @@ class GraphPage extends Component {
         return (
             <>
                 <Header/>
-                <Graph />
-                {/* <GraphSection {...graphObjOne}/> */}
+                {/* <Graph /> */}
+                <GraphSection {...graphObjOne}/>
             </>
 
         );

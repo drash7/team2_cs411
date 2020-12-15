@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { Container, Button } from '../../globalStyles'
 import { Link } from 'react-router-dom';
 import { 
@@ -15,18 +15,49 @@ import {
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {  message } from 'antd';
 import qs from 'querystring'
+import { GraphContext } from "../../contexts/GraphContextProvider";
+import { resolveSoa } from 'dns';
+// import qs from 'querystring'
 
 
 const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCode } ) => {
     const [uuid,setUuid] = useState()
+    const { graphData, setData } = useContext(GraphContext);
+    const graph = qs.parse(window.location.search);
+    // const temp = 'test';
+    // const [userData, setUserData] = useState({
+    //     user: undefined,
+    //   });
+
+    // const setGraphData = (data) => {
+    //     // window.graphData = data
+    //     setUserData({user:data})
+    // }
     const doConnect = ()=>{
         if(!uuid){
             return;
+        } else {
+        console.log(uuid)
+        setData(uuid)
+        // fetch(`http://localhost:9000/bridge?uuid2=${uuid}&username=${window.username}&access_token=${window.access_token}`)
+        //     .then(res => res.json())
+        //     .then(res => console.log(res.users))
+            // .then(res => setData(res.graph, res.recommendations, res.users))
+            // .then(res => setData(res))
+            // .then(res => {setData({graph:res.graph, recommendations:res.recommendations, users:res.users});
+            //     console.log(res);})
+            // .then(data => console.log(data.users))
+            // .then(data => console.log(data.graph))
+            // .then(res => console.log(res.graph))
+            // .then(res => setData(res.graph))
+            // .then(() => console.log(temp))
+            // .then(data => temp = data.users)
+            // .then(() => console.log(temp))
+            
+            
+            // .catch(err => err);
         }
-        fetch(`http://localhost:9000/bridge?uuid2=${uuid}&username=${window.username}&access_token=${window.access_token}`)
-            .then(res => res.json())
-            .then(res => console.log(res))
-            .catch(err => err);
+        
     }
     return (
         <>
@@ -38,7 +69,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         <FormWrapper>
                             <FormInput type='text' required value={uuid} onChange={e=>setUuid(e.target.value)}/>
                             
-                            <Link to = '/loading' onClick={doConnect}>
+                            <Link to = '/graph' onClick={doConnect}>
                                 <FormButton >Connect</FormButton>
                             </Link>
                         </FormWrapper>
