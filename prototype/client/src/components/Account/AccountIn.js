@@ -14,7 +14,7 @@ import {
 
 
 const AccountIn = ( { lightBg, imgStart, lightTopLine, lightTextDesc, 
-    lightText, topLine, description1,description2, description3,headline, img, start, alt} ) => {
+    lightText, topLine, description1, description2, description3, headline, image, start, alt} ) => {
     return (
         <InfoSec lightBg={lightBg}>
             <Container> 
@@ -40,7 +40,8 @@ const AccountIn = ( { lightBg, imgStart, lightTopLine, lightTextDesc,
                     </InfoColumn>
                     <InfoColumn>
                         <ImgWrapper  start={start}>
-                            <Img src={img} alt={alt} />
+                            {console.log("BRUH" + image)}
+                            <Img src={image} alt={alt} />
                         </ImgWrapper>
                     </InfoColumn>
                 </InfoRow>

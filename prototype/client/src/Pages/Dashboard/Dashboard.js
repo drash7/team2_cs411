@@ -13,6 +13,7 @@ class Dashboard extends Component {
         console.log(user);
         if(!user.username)return
         window.displayName = user.username;
+        window.image = user.image;
         window.username = user.userId;
         window.email = user.email;
         window.country = user.country;

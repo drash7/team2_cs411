@@ -18,7 +18,7 @@ const accountObjOne = {
     description1: `user ID:`+window.userId,
     description2: `email:`+window.email,
     description3: `country:`+window.country,
-    img: require('../../assets/images/MusicBridgeLogo.png'), 
+    image: window.image, 
     start: '',
     alt: 'SomeImage'
 };

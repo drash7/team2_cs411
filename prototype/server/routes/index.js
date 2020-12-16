@@ -73,7 +73,6 @@ router.route('/callback')
                     build.user = userInfo;          // internal generated uuid
                     build.spotify = body;           // spotify account data
 
-
                     const top_artists_url = 'https://api.spotify.com/v1/me/top/artists?limit=50';
                     const top_tracks_url = 'https://api.spotify.com/v1/me/top/tracks?limit=25';                    
 
@@ -102,11 +101,9 @@ router.route('/callback')
                     build.top_tracks = top_tracks_data.items;
 
                     let storeData = await DB.callDatabase(userInfo.uuid, build);
-                    console.log(storeData.user);
-                    debugger
 
-                    const { country, email, id: userId, display_name} = body;
-                    const q = {access_token, username: display_name, userId, country, email };
+                    const { country, email, id: userId, display_name, images} = body;
+                    const q = { access_token, username: display_name, userId, country, email, image: images[0].url };
                     q.UUID = userInfo.uuid;
                     //  querystring.stringify({ UUID, access_token, username: display_name, userId, country, email }))
                     res.redirect('http://localhost:3000/dashboard?' + querystring.stringify(q));
