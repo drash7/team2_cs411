@@ -73,7 +73,7 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         <FormWrapper>
                             <FormInput type='text' required value={uuid} onChange={e=>setUuid(e.target.value)}/>
                             <GraphContextProvider>
-                                <Link to='/graph' onClick={doConnect}>
+                                <Link to='/bridge' onClick={doConnect}>
                                     <FormButton >Connect</FormButton>
                                 </Link>
                             </GraphContextProvider>

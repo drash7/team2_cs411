@@ -49,47 +49,22 @@ const Header = () => {
 
                     <NavMenu onClick={handleClick} click={click}>
                         <NavItem>
-                            <NavLink to = '/about'>About</NavLink>
+                            <NavLink to='/dashboard'>Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink to = '/bridges'>Bridges</NavLink>
-                        </NavItem>  
+                            <NavLink to = '/about'>About</NavLink>
+                        </NavItem>
                         <NavItem>
                             <NavLink to = '/account'>My Account</NavLink>
                         </NavItem>  
                         <NavItem>
                             <NavLink to = '/'>Logout</NavLink>
                         </NavItem>
-
-                        {/* <NavItemBtn>
-                            {button ? (
-                                <NavBtnLink>
-                                    <Link to='/'>
-                                        <Button primary >Logout</Button>
-                                    </Link>
-                                </NavBtnLink>
-                            ) : (
-                                <NavBtnLink>
-                                    <Link to='/'>
-                                        <Button>
-                                            Logout
-                                        </Button>
-                                    </Link>
-                                </NavBtnLink>
-                            )}
-                        </NavItemBtn>   */}
                     </NavMenu>
 
                     <NavLogo to="/dashboard">
                         <Logo src={LogoSrc} />
                     </NavLogo>
-
-
-                    {/* <NavMenu onClick={handleClick} click={click}>
-                        
-                    </NavMenu> */}
-                    
-
                 </NavBarContainer>
             </Nav>
         </IconContext.Provider>

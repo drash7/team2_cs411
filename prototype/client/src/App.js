@@ -4,7 +4,6 @@ import GlobalStyle from './globalStyles';
 
 import Home from "./Pages/Home/Home"
 import Dashboard from "./Pages/Dashboard/Dashboard"
-import Bridges from "./Pages/Bridges"
 import About from "./Pages/About/About"
 import ScrollToTop from "./components/ScrollToTop"
 import Account from "./Pages/Account/Account"
@@ -25,12 +24,11 @@ class App extends Component {
           <GraphContextProvider>
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/redirect" exact component={Dashboard} />
-            <Route path="/bridges" exact component={Bridges} />
             <Route path="/about" exact component={About} />
             <Route path="/account" exact component={Account} />
             <Route path="/loading" exact component={RequestPending} />
             <Route path="/notfound" exact component={NotFoundPage} />
-            <Route path="/graph" exact component={GraphPage} />
+            <Route path="/bridge" exact component={GraphPage} />
           </GraphContextProvider>
         </Switch>
       </Router>
