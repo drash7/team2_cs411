@@ -4,7 +4,6 @@ import { Container, Button } from '../../globalStyles'
 import Graph  from './Graph'
 import RecommendationBox from "./RecommendationBox"
 import PlaylistImageStack from "./PlaylistImageStack"
-import { ReactPhotoCollage } from "react-photo-collage";
 import { Link } from 'react-router-dom';
 import { 
     GraphSec, 
@@ -54,7 +53,18 @@ class GraphSection extends Component {
             this.setState({ error: true })
             throw new Error(res.statusText)
         } else {
-            this.setState({ "data": data, "dataLoaded": true })
+            const idx = [];
+            for (let i = 0; i < 4; i++) {
+                let j;
+
+                j = Math.floor(Math.random() * data.graph.nodes.length);
+
+                idx.push(j);
+            }
+
+            const playlistPictures = idx.map(i => data.graph.nodes[i].photo);
+
+            this.setState({ "playlistPictures": playlistPictures, "data": data, "dataLoaded": true })
         }
     }
 
@@ -71,7 +81,7 @@ class GraphSection extends Component {
 
     async playlistHandler() {
         if (this.state.playlistLink === "") {
-            await getPlaylist();
+            await this.getPlaylist();
         }
 
         window.open(this.state.playlistLink, "_blank")
@@ -79,19 +89,6 @@ class GraphSection extends Component {
 
     async componentDidMount() {
         await this.callAPI();
-
-        const idx = [];
-        for (let i = 0; i < 4; i++) {
-            let j;
-
-            j = Math.floor(Math.random() * this.state.data.graph.nodes.length);
-
-            idx.push(j);
-        }
-
-        const playlistPictures = idx.map(i => this.state.data.graph.nodes[i].photo);
-
-        this.setState({ playlistPictures })
     }
 
     render() {
@@ -119,12 +116,12 @@ class GraphSection extends Component {
                         </GraphContainer>
 
                         <RecommendationsContainer>
-                            <h2 style={{ "text-align": "center" }}>
+                            <h2 style={{ "textAlign": "center" }}>
                                 Some artists you might (both) like
                             </h2>
-                            <div style={ {"text-align":"center" }}>
+                            <div style={ { "textAlign":"center" }}>
                                 {this.state.data.recommendations.map(artist => {
-                                    return (<RecommendationBox artist={artist} />)
+                                    return (<RecommendationBox key={artist.name} artist={artist} />)
                                 })}
                             </div>
                         </RecommendationsContainer>

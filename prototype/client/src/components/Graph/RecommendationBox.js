@@ -14,18 +14,19 @@ class RecommendationBox extends Component {
         return (
             <div style={{display:"inline-block", margin:"0.5vw", width: 160, }}>
                 <img 
+                    alt=""
                     onClick={() => this.goToArtistPage()} 
                     src={this.props.artist.photo}
                     style={{ 
-                        "pointer-events": "all", 
+                        "pointerEvents": "all", 
                         "cursor": "pointer", 
-                        "border-radius": "50%"
+                        "borderRadius": "50%"
                     }}
                     width={160}
                     height={160}
                 >
                 </img>
-                <p style={{ margin: "auto", "text-align": "center", "padding-top": 10}}>
+                <p style={{ "margin": "auto", "textAlign": "center", "paddingTop": 10}}>
                     {this.props.artist.name}
                 </p>
             </div>

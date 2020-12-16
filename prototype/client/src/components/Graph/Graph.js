@@ -72,7 +72,6 @@ class Graph extends Component {
 
         // Color for all stroke related things
         const stroke_color = "#FFFFFF";
-        const node_default_size = 15;
 
         // Force simulation treats nodes as "particles" with repelling and attracting forces
         const simulation = d3.forceSimulation(nodes)
@@ -109,7 +108,7 @@ class Graph extends Component {
             .join("g")
             .attr("class", "node")
             .append("circle")
-            .attr("r", node_default_size)
+            .attr("r", 15)
             .attr("fill", d => node_color(d.__proto__.genres[0]))
             .attr("fill-opacity", 1)
             .call(drag(simulation))
@@ -140,7 +139,7 @@ class Graph extends Component {
                 // Make the hovered node a bicc boi
                 select(this).transition()
                     .duration(100)
-                    .attr("r", node_default_size*2);
+                    .attr("r", 30);
             })
             .on('mouseout', function (d, i) {
                 // Make links go back to normal
@@ -157,7 +156,7 @@ class Graph extends Component {
                 // Make current node be normal sized
                 select(this).transition()
                     .duration(100)
-                    .attr("r", node_default_size);
+                    .attr("r", 15);
             });
 
         // Append labels to nodes

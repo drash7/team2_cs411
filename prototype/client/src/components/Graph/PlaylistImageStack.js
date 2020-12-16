@@ -13,21 +13,21 @@ class PlaylistImageStack extends Component {
     render() {
         return (
             <div>
-                <h2 style={{"margin-top": "3vw", "text-align": "center",}}>We've Made you a playlist</h2>
-                <div style={{ width: 280, "margin-left": "auto", "margin-right": "auto", "margin-top": "1vw", "margin-bottom": "1vw", position: "relative"}}>
+                <h2 style={{"marginTop": "3vw", "textAlign": "center",}}>We've Made you a playlist</h2>
+                <div style={{ width: 280, "marginLeft": "auto", "marginRight": "auto", "marginTop": "1vw", "marginBottom": "1vw", position: "relative"}}>
                     {this.props.pictures.map((pic, pos) => {
                         return <img
+                            alt={""}
                             key={pic}
                             src={pic}
                             width={160}
                             height={160}
                             style={{
-                                display: "inline-block",
                                 position: "absolute",
                                 left: 40 * (pos),
                                 top: 0,
-                                "border-radius": "50%",
-                                "z-index": 4 - pos
+                                "borderRadius": "50%",
+                                "zIndex": 4 - pos
                             }}
                         >
                         </img>
