@@ -9,16 +9,9 @@ import { Link } from 'react-router-dom';
 import { 
     GraphSec, 
     GraphRow,
-    TopLine,
     GraphContainer,
     RecommendationsContainer,
-    FormInput,
-    FormButton,
-    Text,
-    CodeButton,
-    ButtonWrapper,
-    Line,
-    FormWrapper
+
 } from './GraphSection.elements'
 
 import { GraphContextProvider,  GraphContext } from "../../contexts/GraphContextProvider";
@@ -109,12 +102,6 @@ class GraphSection extends Component {
 
                         <GraphContainer>
                             <GraphRow>
-                                <TopLine lightTopLine={this.props.lightTopLine}>
-                                    {this.props.topLine}
-                                    This do be the graph
-                                    {console.log(this.state.data)}
-                                </TopLine>
-
                                 <div style={{width:"100%", height:"100%"}}></div>
                                     <Graph
                                         graph={this.state.data.graph}
@@ -144,7 +131,19 @@ class GraphSection extends Component {
                     </GraphSec>
                 </>
             )
-        } else {
+        } else if (this.state.error) {
+            return (
+                <>
+                    <GraphSec>
+                        <Container>
+                            <h1>An error occurred :(</h1>
+                            <button onClick={() => { window.redirect("/dashboard")}} class={"button"}>Try again!</button>
+                        </Container>
+                    </GraphSec>
+                </>
+            )
+        }
+        else {
             return (
                 <>
                     <GraphSec>

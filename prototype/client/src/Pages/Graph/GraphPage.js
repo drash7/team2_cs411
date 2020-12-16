@@ -13,7 +13,7 @@ class GraphPage extends Component {
                 <>                                   
                     <Header />
                     {/* <Graph /> */}
-                    <GraphSection data={graphObjOne} context={context}/>
+                    <GraphSection input={graphObjOne} context={context}/>
                 </>
             )
         }
