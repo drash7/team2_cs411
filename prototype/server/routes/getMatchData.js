@@ -62,8 +62,8 @@ router.route('/')
 
             // Graph + recommendations
             const data = await formatGraphData(user1TopArtists, user2TopArtists, users)
-            const graph = data[0], allArtistsNames = data[1];
-            const recommendations = await getRecommendedArtistsTasteDive(allArtistsNames);
+            const graph = data[0], top10ArtistsJoined = data[1];
+            const recommendations = await getRecommendedArtistsTasteDive(top10ArtistsJoined);
 
             // Send Data to frontend
             res.send({graph, recommendations, users});
@@ -76,7 +76,7 @@ async function getRecommendedArtistsTasteDive(artists) {
     // Make call to TasteDive API
     const params = new URLSearchParams({
         q: artists.join(","),
-        limit: 6,
+        limit: 8,
         type: "music",
         k: CONFIG.tasteDive.accessKey
     });
@@ -142,6 +142,15 @@ async function getRelatedArtistsSpotify(artists) {
             result[artist.name] = data.artists.map(a => a.name);
         })
     );
+
+    artists.forEach(artist1 => {
+        for (artist2 in result) {
+            if (result[artist2].includes(artist1.name) && !result[artist1.name].includes(artist2)) {
+                result[artist1.name].push(artist2);
+            }
+        }
+    });
+
     return result
 }
 
@@ -175,7 +184,7 @@ async function formatGraphData(user1Data, user2Data, userNames) {
         nodes.push(
             {
                 id: artist.name,
-                source: artist.name in user1ArtistsNames && user2ArtistsNames ? "both" : userNames.user1,
+                source: user1ArtistsNames.includes(artist.name) && user2ArtistsNames.includes(artist.name) ? "both" : userNames.user1,
                 genres: artist.genres,
                 association: assoc,
                 url: artist.external_urls.spotify,
@@ -205,7 +214,9 @@ async function formatGraphData(user1Data, user2Data, userNames) {
         }
     });
 
-    return [{ "nodes": nodes, "links": links }, allArtistsNames];
+    const top10ArtistsJoined = [... new Set([...user1ArtistsNames.slice(0, 10), ...user2ArtistsNames.slice(0, 10)])]
+
+    return [{ "nodes": nodes, "links": links }, top10ArtistsJoined];
 }
 
 module.exports = router;

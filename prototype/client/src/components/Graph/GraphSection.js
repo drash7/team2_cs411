@@ -3,12 +3,15 @@ import { useAsync } from "react-async"
 import { Container, Button } from '../../globalStyles'
 import Graph  from './Graph'
 import RecommendationBox from "./RecommendationBox"
+import PlaylistImageStack from "./PlaylistImageStack"
+import { ReactPhotoCollage } from "react-photo-collage";
 import { Link } from 'react-router-dom';
 import { 
     GraphSec, 
     GraphRow,
     TopLine,
     GraphContainer,
+    RecommendationsContainer,
     FormInput,
     FormButton,
     Text,
@@ -32,14 +35,15 @@ class GraphSection extends Component {
             access_token: window.access_token,
             dataLoaded: false,
             data: {},
-            error: false
+            error: false,
+            playlistPictures: [],
+            playlistLink: ""
         };
-
-        console.log(this.props);
     }
+
     async wait(ms) {
-    return new Promise(resolve => {
-        setTimeout(resolve, ms);
+        return new Promise(resolve => {
+            setTimeout(resolve, ms);
     });
 }
     async callAPI() {
@@ -54,8 +58,40 @@ class GraphSection extends Component {
         }
     }
 
+    async getPlaylist() {
+        const res = await fetch(`http://localhost:9000/playlist?uuid2=${this.props.context.graphData.friendCode}&username=${this.state.username}&access_token=${this.state.access_token}`)
+        const data = await res.json();
+        if (!res.ok) {
+            this.setState({ error: true })
+            throw new Error(res.statusText)
+        } else {
+            this.setState({ "playlistLink": data.url})
+        }
+    }
+
+    async playlistHandler() {
+        if (this.state.playlistLink === "") {
+            await getPlaylist();
+        }
+
+        window.open(this.state.playlistLink, "_blank")
+    }
+
     async componentDidMount() {
         await this.callAPI();
+
+        const idx = [];
+        for (let i = 0; i < 4; i++) {
+            let j;
+
+            j = Math.floor(Math.random() * this.state.data.graph.nodes.length);
+
+            idx.push(j);
+        }
+
+        const playlistPictures = idx.map(i => this.state.data.graph.nodes[i].photo);
+
+        this.setState({ playlistPictures })
     }
 
     render() {
@@ -63,6 +99,7 @@ class GraphSection extends Component {
             return (
                 <>
                     <GraphSec>
+
                         <GraphContainer>
                             <GraphRow>
                                 <TopLine lightTopLine={this.props.lightTopLine}>
@@ -80,7 +117,8 @@ class GraphSection extends Component {
                                     />
                             </GraphRow>
                         </GraphContainer>
-                        <Container>
+
+                        <RecommendationsContainer>
                             <h2 style={{ "text-align": "center" }}>
                                 Some artists you might (both) like
                             </h2>
@@ -89,7 +127,12 @@ class GraphSection extends Component {
                                     return (<RecommendationBox artist={artist} />)
                                 })}
                             </div>
+                        </RecommendationsContainer>
+
+                        <Container>
+                            <PlaylistImageStack pictures={this.state.playlistPictures}/>
                         </Container>
+
                     </GraphSec>
                 </>
             )
