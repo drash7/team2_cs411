@@ -49,9 +49,9 @@ export const Img = styled.img`
     padding-right: 0;
     border: 0;
     max-width: 100%;
-    vertical-align: middle;
+    vertical-align: left;
     display: inline-block;
-    max-height: 500px;
+    max-height: 400px;
 `;
 
 export const TopLine = styled.div`
