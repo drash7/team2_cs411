@@ -44,8 +44,24 @@ class GraphSection extends Component {
     async wait(ms) {
         return new Promise(resolve => {
             setTimeout(resolve, ms);
-    });
-}
+        });
+    }
+
+    // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
+    getRandom(arr, n) {
+        var result = new Array(n),
+            len = arr.length,
+            taken = new Array(len);
+        if (n > len)
+            throw new RangeError("getRandom: more elements taken than available");
+        while (n--) {
+            var x = Math.floor(Math.random() * len);
+            result[n] = x in taken ? taken[x] : x;
+            taken[x] = --len in taken ? taken[len] : len;
+        }
+        return result;
+    }
+
     async callAPI() {
         const res = await fetch(`http://localhost:9000/bridge?uuid2=${this.props.context.graphData.friendCode}&username=${this.state.username}&access_token=${this.state.access_token}`)
         const data = await res.json();
@@ -54,14 +70,7 @@ class GraphSection extends Component {
             this.setState({ error: true })
             throw new Error(res.statusText)
         } else {
-            const idx = [];
-            for (let i = 0; i < 4; i++) {
-                let j;
-
-                j = Math.floor(Math.random() * data.graph.nodes.length);
-
-                idx.push(j);
-            }
+            const idx = this.getRandom(data.graph.nodes, 4);
 
             const playlistPictures = idx.map(i => data.graph.nodes[i].photo);
 
