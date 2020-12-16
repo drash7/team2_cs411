@@ -19,9 +19,7 @@ class Graph extends Component {
     componentDidMount() {
         this.createGraph()
     }
-    componentDidUpdate() {
-        this.createGraph()
-    }
+
     // This builds the actual graph
     createGraph() {
         const NODE = this.node;
