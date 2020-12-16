@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '../../globalStyles'
+import LogoSrc from '../../assets/images/MusicBridgeLogo.png';
 import {
     InfoSec,
     InfoRow,
@@ -34,7 +35,7 @@ const InfoSection = ( { lightBg, imgStart, lightTopLine, lightTextDesc,
                     </InfoColumn>
                     <InfoColumn>
                         <ImgWrapper  start={start}>
-                            <Img src={img} alt={alt} />
+                            <Img src={LogoSrc} alt={alt} />
                         </ImgWrapper>
                     </InfoColumn>
                 </InfoRow>

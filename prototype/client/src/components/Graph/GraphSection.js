@@ -71,7 +71,7 @@ class GraphSection extends Component {
 
     async playlistHandler() {
         if (this.state.playlistLink === "") {
-            await getPlaylist();
+            await this.getPlaylist();
         }
 
         window.open(this.state.playlistLink, "_blank")
