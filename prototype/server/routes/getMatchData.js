@@ -87,7 +87,7 @@ async function getRecommendedArtistsTasteDive(artists) {
     const recommendations = data.Similar.Results.map(a => a.Name);
 
     // Used to store all spotify info for each recommended artist (ultimate result)
-    const recommendationsSpotify = {};
+    const recommendationsSpotify = [];
     // Fetch options
     const options = {
         headers: {
@@ -111,11 +111,11 @@ async function getRecommendedArtistsTasteDive(artists) {
             
             const artistInfo = data1.artists.items[0];
             // Save artist name, url, and little picture
-            recommendationsSpotify[artist] = {
+            recommendationsSpotify.push({
                 name: artist,
                 url: artistInfo.external_urls.spotify,
                 photo: artistInfo.images[2].url
-            };
+            });
         })
     );
     // Return desired result

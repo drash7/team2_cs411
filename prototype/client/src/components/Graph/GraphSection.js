@@ -2,6 +2,7 @@ import React, {useState, useContext, Component} from 'react'
 import { useAsync } from "react-async"
 import { Container, Button } from '../../globalStyles'
 import Graph  from './Graph'
+import RecommendationBox from "./RecommendationBox"
 import { Link } from 'react-router-dom';
 import { 
     GraphSec, 
@@ -67,11 +68,8 @@ class GraphSection extends Component {
                                 <TopLine lightTopLine={this.props.lightTopLine}>
                                     {this.props.topLine}
                                     This do be the graph
+                                    {console.log(this.state.data)}
                                 </TopLine>
-                                {console.log("I got the graph ting")}
-                                {console.log(this.state.data.graph)}
-                                {console.log("I got the users ting")}
-                                {console.log(this.state.data.users)}
 
                                 <div style={{width:"100%", height:"100%"}}></div>
                                     <Graph
@@ -81,8 +79,17 @@ class GraphSection extends Component {
                                         width={window.innerWidth}
                                     />
                             </GraphRow>
-
                         </GraphContainer>
+                        <Container>
+                            <h2 style={{ "text-align": "center" }}>
+                                Some artists you might (both) like
+                            </h2>
+                            <div style={ {"text-align":"center" }}>
+                                {this.state.data.recommendations.map(artist => {
+                                    return (<RecommendationBox artist={artist} />)
+                                })}
+                            </div>
+                        </Container>
                     </GraphSec>
                 </>
             )

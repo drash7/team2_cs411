@@ -13,6 +13,7 @@ export const GraphSec = styled.div`
     }
 `
 
+
 export const GraphContainer = styled.div`
 z-index: 1;
 width: 70%;
