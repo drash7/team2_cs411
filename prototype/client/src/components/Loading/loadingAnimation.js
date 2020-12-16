@@ -1,40 +1,53 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { autoType } from "d3";
 
 const containerStyle = {
   position: "relative",
-  width: "3rem",
-  height: "3rem",
-  boxSizing: "border-box"
+  width: "15rem",
+  height: "15rem",
+  boxSizing: "border-box",
+  margin: "auto"
 };
 
 const circleStyle = {
+  backgroundColor: "#e9e9e9",
   display: "block",
-  width: "3rem",
-  height: "3rem",
-  border: "0.5rem solid #e9e9e9",
-  borderTop: "0.5rem solid #3498db",
+  width: "5rem",
+  height: "5rem",
+  border: "0.2rem solid #e9e9e9",
   borderRadius: "50%",
-  position: "absolute",
+  position: "relative",
   boxSizing: "border-box",
-  top: 0,
-  left: 0
+  margin: "auto"
 };
 
 const spinTransition = {
   loop: Infinity,
   ease: "linear",
-  duration: 1
+  duration: 2
 };
+
+const labelStyle = {
+  boxSizing: "border-box",
+  padding: "3rem",
+  textAlign: "center",
+  fontWeight: "bold"
+}
 
 export default function CircleLoader() {
   return (
     <div style={containerStyle}>
-      <motion.span
+      <motion.div
         style={circleStyle}
-        animate={{ rotate: 360 }}
+        animate={{
+          scale: [1, 1.5, 1.5, 1, 1, 1, 1, 1],
+          rotate: [0, 90, 180, 270, 360, 0, 0, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
         transition={spinTransition}
       />
+      <p style={labelStyle}>Loading Data BeepBeepBoopBoop</p>
     </div>
   );
 }

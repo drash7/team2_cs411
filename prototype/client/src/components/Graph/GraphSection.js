@@ -1,7 +1,8 @@
 import React, {useState, useContext, Component} from 'react'
 import { useAsync } from "react-async"
 import { Container, Button } from '../../globalStyles'
-import Graph  from './Graph'
+import Graph from './Graph'
+import Timer from './../Loading/Timer'
 import RecommendationBox from "./RecommendationBox"
 import PlaylistImageStack from "./PlaylistImageStack"
 import { Link } from 'react-router-dom';
@@ -138,14 +139,7 @@ class GraphSection extends Component {
                 <>
                     <GraphSec>
                         <Container>
-                            <GraphRow>
-                                <TopLine lightTopLine={this.props.lightTopLine}>
-                                    {this.props.topLine}
-                                    {this.props.context.graphData.friendCode}
-                            </TopLine>
-                                <p>PeePeePooPoo</p>
-                            </GraphRow>
-
+                            <Timer />
                         </Container>
                     </GraphSec>
                 </>
