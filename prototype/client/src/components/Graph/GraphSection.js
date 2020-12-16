@@ -138,6 +138,7 @@ class GraphSection extends Component {
 
                         <Container>
                             <PlaylistImageStack pictures={this.state.playlistPictures}/>
+                            <button onClick={() => this.playlistHandler()}class={"button"}>Export It!</button>
                         </Container>
 
                     </GraphSec>
