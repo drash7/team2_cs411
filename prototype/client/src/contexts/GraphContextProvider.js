@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 export const GraphContext = createContext();
 
-const GraphContextProvider = (props) => {
+export const GraphContextProvider = (props) => {
     const [graphData, setGraphData] = useState(
     //    {graph: {test: "test"}, recommendations: {}, users: {}}
         // {data:{}}
@@ -27,4 +27,4 @@ const GraphContextProvider = (props) => {
     );
 }
 
-export default GraphContextProvider;
+export default { GraphContextProvider, GraphContext};

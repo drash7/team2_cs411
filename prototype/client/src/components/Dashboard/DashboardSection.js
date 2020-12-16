@@ -15,7 +15,7 @@ import {
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {  message } from 'antd';
 import qs from 'querystring'
-import { GraphContext } from "../../contexts/GraphContextProvider";
+import { GraphContextProvider, GraphContext } from "../../contexts/GraphContextProvider";
 import { resolveSoa } from 'dns';
 // import qs from 'querystring'
 
@@ -24,6 +24,10 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
     const [uuid,setUuid] = useState()
     const { graphData, setData } = useContext(GraphContext);
     const graph = qs.parse(window.location.search);
+
+    React.useEffect(() => {
+        setData(uuid);
+    }, [] );
     // const temp = 'test';
     // const [userData, setUserData] = useState({
     //     user: undefined,
@@ -68,10 +72,11 @@ const DashboardSection = ( { primary, topLine, lightTopLine, buttonLabel, userCo
                         
                         <FormWrapper>
                             <FormInput type='text' required value={uuid} onChange={e=>setUuid(e.target.value)}/>
-                            
-                            <Link to = '/graph' onClick={doConnect}>
-                                <FormButton >Connect</FormButton>
-                            </Link>
+                            <GraphContextProvider>
+                                <Link to='/graph' onClick={doConnect}>
+                                    <FormButton >Connect</FormButton>
+                                </Link>
+                            </GraphContextProvider>
                         </FormWrapper>
 
                         

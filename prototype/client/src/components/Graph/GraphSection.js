@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, Component} from 'react'
 import { useAsync } from "react-async"
 import { Container, Button } from '../../globalStyles'
 import Graph  from './Graph'
@@ -7,6 +7,7 @@ import {
     GraphSec, 
     GraphRow,
     TopLine,
+    GraphContainer,
     FormInput,
     FormButton,
     Text,
@@ -16,65 +17,93 @@ import {
     FormWrapper
 } from './GraphSection.elements'
 
-import { GraphContext } from "../../contexts/GraphContextProvider";
+import { GraphContextProvider,  GraphContext } from "../../contexts/GraphContextProvider";
 
 
-async function callAPI(graphData) {
-    const res = await fetch(`http://localhost:9000/bridge?uuid2=${graphData.friendCode}&username=${window.username}&access_token=${window.access_token}`)
-    if (!res.ok) throw new Error(res.statusText)
-    return res.json()
+// { primary, topLine, lightTopLine, buttonLabel, userCode }
+class GraphSection extends Component {
+    constructor(props) {
+        super(props);
+        // const { contextData, setData } = useContext(GraphContext);
+
+        this.state = {
+            username: window.username, 
+            access_token: window.access_token,
+            dataLoaded: false,
+            data: {},
+            error: false
+        };
+
+        console.log(this.props);
+    }
+    async wait(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
 }
+    async callAPI() {
+        const res = await fetch(`http://localhost:9000/bridge?uuid2=${this.props.context.graphData.friendCode}&username=${this.state.username}&access_token=${this.state.access_token}`)
+        const data = await res.json();
 
-const GraphSection = ( { primary, topLine, lightTopLine, buttonLabel, userCode } ) => {
-    const { graphData, setData } = useContext(GraphContext);
-    // const [graphDatas, setDatas] = useState({});
-    let bridgeData;
+        if (!res.ok) {
+            this.setState({ error: true })
+            throw new Error(res.statusText)
+        } else {
+            this.setState({ "data": data, "dataLoaded": true })
+        }
+    }
 
-    React.useEffect(async () => {
-        bridgeData = await callAPI(graphData);
-    }, []);
+    async componentDidMount() {
+        await this.callAPI();
+    }
 
-    if (bridgeData === undefined) {
-        return (
-            <>
-                <GraphSec>
-                    <Container>
-                        <GraphRow>
-                            <TopLine lightTopLine={lightTopLine}>
-                                {topLine}
-                                {graphData.friendCode}
-                            test
-                        </TopLine>
-                            <p>PeePeePooPoo</p>
-                        </GraphRow>
+    render() {
+        if (this.state.dataLoaded) {
+            return (
+                <>
+                    <GraphSec>
+                        <GraphContainer>
+                            <GraphRow>
+                                <TopLine lightTopLine={this.props.lightTopLine}>
+                                    {this.props.topLine}
+                                    This do be the graph
+                                </TopLine>
+                                {console.log("I got the graph ting")}
+                                {console.log(this.state.data.graph)}
+                                {console.log("I got the users ting")}
+                                {console.log(this.state.data.users)}
 
-                    </Container>
-                </GraphSec>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <GraphSec>
-                    <Container>
-                        <GraphRow>
-                            <TopLine lightTopLine={lightTopLine}>
-                                {topLine}
-                                {graphData.friendCode}
-                            test
-                        </TopLine>
-                            {/* {console.log(testing)} */}
-                            {console.log(window.access_token)}
-                            {console.log(window.username)}
-                            {/* {console.log(graphDatas)} */}
-                            {/* {console.log(graphData)} */}
-                            <Graph graph={bridgeData.graph} users={bridgeData.users} height={window.innerHeight} width={window.innerWidth} />
-                        </GraphRow>
+                                <div style={{width:"100%", height:"100%"}}></div>
+                                    <Graph
+                                        graph={this.state.data.graph}
+                                        users={this.state.data.users}
+                                        height={window.innerHeight}
+                                        width={window.innerWidth}
+                                    />
+                            </GraphRow>
 
-                    </Container>
-                </GraphSec>
-            </>
-        )
+                        </GraphContainer>
+                    </GraphSec>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <GraphSec>
+                        <Container>
+                            <GraphRow>
+                                <TopLine lightTopLine={this.props.lightTopLine}>
+                                    {this.props.topLine}
+                                    {this.props.context.graphData.friendCode}
+                            </TopLine>
+                                <p>PeePeePooPoo</p>
+                            </GraphRow>
+
+                        </Container>
+                    </GraphSec>
+                </>
+            )
+        }
     }
 }
 

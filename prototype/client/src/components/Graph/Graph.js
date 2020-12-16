@@ -30,7 +30,7 @@ class Graph extends Component {
         select(NODE)
             .attr(
                 "viewBox",
-                [-this.props.width / 2, -this.props.height / 2, this.props.width, this.props.height]
+                [-this.props.width / 2, -this.props.height / 2.4, this.props.width, this.props.height/1.2]
             );
 
         // Function implements dragging behavior of nodes
@@ -72,10 +72,11 @@ class Graph extends Component {
 
         // Color for all stroke related things
         const stroke_color = "#FFFFFF";
+        const node_default_size = 15;
 
         // Force simulation treats nodes as "particles" with repelling and attracting forces
         const simulation = d3.forceSimulation(nodes)
-            .force("charge", d3.forceManyBody(links).strength(-200 * this.props.width / 2100))
+            .force("charge", d3.forceManyBody(links).strength(-200 * this.props.width / 1900))
             .force("link", d3.forceLink(links).id(d => d.id).strength(0.0001))
             .force("x", d3.forceX().x(d => {
                 switch (d.__proto__.source) {
@@ -96,7 +97,7 @@ class Graph extends Component {
             .data(links)
             .join("line")
             .attr("stroke", stroke_color)
-            .attr("stroke-width", 1)
+            .attr("stroke-width", 2)
             .attr("stroke-opacity", 0.07);
 
         // Give node properties
@@ -108,7 +109,7 @@ class Graph extends Component {
             .join("g")
             .attr("class", "node")
             .append("circle")
-            .attr("r", 10)
+            .attr("r", node_default_size)
             .attr("fill", d => node_color(d.__proto__.genres[0]))
             .attr("fill-opacity", 1)
             .call(drag(simulation))
@@ -122,7 +123,7 @@ class Graph extends Component {
                 // Accent links with hovered artist, lighten those that aren't
                 link.transition()
                     .duration(100)
-                    .attr("stroke-width", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 2 : 1)
+                    .attr("stroke-width", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 4 : 2)
                     .attr("stroke-opacity", d => artist.id === d.__proto__.source || artist.id === d.__proto__.target ? 0.9 : 0.02);
 
                 // Hide away nodes that aren't either hovered or connected to
@@ -139,13 +140,13 @@ class Graph extends Component {
                 // Make the hovered node a bicc boi
                 select(this).transition()
                     .duration(100)
-                    .attr("r", 25);
+                    .attr("r", node_default_size*2);
             })
             .on('mouseout', function (d, i) {
                 // Make links go back to normal
                 link.transition()
                     .duration(100)
-                    .attr("stroke-width", 1)
+                    .attr("stroke-width", 2)
                     .attr("stroke-opacity", 0.07);
 
                 // Make nodes go back to normal
@@ -156,7 +157,7 @@ class Graph extends Component {
                 // Make current node be normal sized
                 select(this).transition()
                     .duration(100)
-                    .attr("r", 10);
+                    .attr("r", node_default_size);
             });
 
         // Append labels to nodes
@@ -187,7 +188,7 @@ class Graph extends Component {
             .attr("fill", "white")
             .attr("stroke-opacity", 1)
             .attr("stroke", stroke_color)
-            .attr("stroke-width", 1)
+            .attr("stroke-width", 2)
             .attr("rx", 10)
             .style("text-shadow", "1em");
 
@@ -263,13 +264,13 @@ class Graph extends Component {
             <div className="graphWrapper">
                 {/* Labels */}
                 <span style={{ width: "100%", textAlign: "center", display: "block" }}>
-                    <h2 style={{ display: "inline-block", width: "30%" }}>{this.props.users.user1}</h2>
-                    <h2 style={{ display: "inline-block", width: "30%" }}>Both</h2>
-                    <h2 style={{ display: "inline-block", width: "30%" }}>{this.props.users.user2}</h2>
+                    <h2 style={{ display: "inline-block", width: "30%", margin: "auto"}}>{this.props.users.user1}</h2>
+                    <h2 style={{ display: "inline-block", width: "25%", margin: "auto"}}>Both</h2>
+                    <h2 style={{ display: "inline-block", width: "30%", margin: "auto"}}>{this.props.users.user2}</h2>
                 </span>
                 {/* Graph SVG */}
                 <svg className=".svg-container" ref={node => this.node = node}
-                    width={this.props.width} height={this.props.height}>
+                    width={"100%"} height={"50%"}>
                 </svg>
             </div>
         )

@@ -36,8 +36,6 @@ class Dashboard extends Component {
             <>
                 <Header/>
                 <DashboardSection {...dashboardObjOne}/>
-               
-              
             </>
 
         );

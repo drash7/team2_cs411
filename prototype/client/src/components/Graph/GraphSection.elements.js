@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const GraphSec = styled.div`
     color: #fff;
     padding: 160px 0;
+    max-width: 100%;
+    max-height: 100%;
     background: ${({ lightBg }) => (lightBg ? '#fff' : '#101522')};
 
     @media screen and (max-width: 960px) {
@@ -10,8 +12,24 @@ export const GraphSec = styled.div`
         padding-right: 5vh;
     }
 `
+
+export const GraphContainer = styled.div`
+z-index: 1;
+width: 70%;
+height: 40%;
+margin-right: auto;
+margin-left: auto;
+
+
+@media screen and (max-width: 991px) {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+`
+
 export const GraphRow = styled.div`
-    max-width: 540px;
+    max-width: 100%;
+    max-height: 60%;
     padding-top: 0;
     padding-bottom: 60px;
 

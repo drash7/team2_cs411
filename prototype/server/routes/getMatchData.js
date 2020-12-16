@@ -177,13 +177,13 @@ async function formatGraphData(user1Data, user2Data, userNames) {
                 id: artist.name,
                 source: artist.name in user1ArtistsNames && user2ArtistsNames ? "both" : userNames.user1,
                 genres: artist.genres,
-                associations: assoc,
+                association: assoc,
                 url: artist.external_urls.spotify,
-                photo: artist.images[2]
+                photo: artist.images[2].url
             }
         )
         // Create Links to associations
-        assoc.forEach(artistAssoc => links.push({ source: artist.name, destination: artistAssoc }))
+        assoc.forEach(artistAssoc => links.push({ source: artist.name, target: artistAssoc }))
     });
 
     // Parse through user 2 top artists
@@ -195,13 +195,13 @@ async function formatGraphData(user1Data, user2Data, userNames) {
                     id: artist.name,
                     source: userNames.user2,
                     genres: artist.genres,
-                    associations: assoc,
+                    association: assoc,
                     url: artist.external_urls.spotify,
-                    photo: artist.images[2]
+                    photo: artist.images[2].url
                 }
             )
             // Create Links to associations
-            assoc.forEach(artistAssoc => links.push({ source: artist.name, destination: artistAssoc }))
+            assoc.forEach(artistAssoc => links.push({ source: artist.name, target: artistAssoc }))
         }
     });
 

@@ -12,7 +12,7 @@ import RequestPending from "./Pages/RequestPending/RequestPending";
 import NotFoundPage from "./Pages/NotFoundPage";
 import GraphPage from "./Pages/Graph/GraphPage";
 
-import GraphContextProvider from "./contexts/GraphContextProvider"
+import {GraphContextProvider, GraphContext} from "./contexts/GraphContextProvider"
 
 class App extends Component {
   render() {
