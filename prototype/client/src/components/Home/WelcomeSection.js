@@ -49,11 +49,6 @@ const WelcomeSection = ( { primary, lightBg, imgStart, lightTopLine, lightTextDe
                             </Button>
                         {/* </Link> } */}
                     </WelcomeColumn>
-                    <WelcomeColumn>
-                        <ImgWrapper  start={start}>
-                            <Img src={img} alt={alt} />
-                        </ImgWrapper>
-                    </WelcomeColumn>
                 </WelcomeRow>
             </Container>
 
